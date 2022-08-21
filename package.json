@@ -1,7 +1,10 @@
 {
   "name": "remy-design",
   "private": "true",
-  "scripts": {},
+  "scripts": {
+    "build": "npm run build:css",
+    "build:css": "sass public/style.scss --style=compressed | postcss -u autoprefixer -o public/style.css --no-map"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bozdoz/remy-design.git"
@@ -14,6 +17,7 @@
   "homepage": "https://github.com/bozdoz/remy-design#readme",
   "dependencies": {
     "autoprefixer": "^10.4.8",
+    "postcss-cli": "^10.0.0",
     "sass": "^1.54.5"
   }
 }
