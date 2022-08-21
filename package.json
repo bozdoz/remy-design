@@ -1,0 +1,19 @@
+{
+  "name": "remy-design",
+  "private": "true",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bozdoz/remy-design.git"
+  },
+  "author": "bozdoz",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/bozdoz/remy-design/issues"
+  },
+  "homepage": "https://github.com/bozdoz/remy-design#readme",
+  "dependencies": {
+    "autoprefixer": "^10.4.8",
+    "sass": "^1.54.5"
+  }
+}
