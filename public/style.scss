@@ -1,7 +1,79 @@
-body {
-  background: black;
+$iconWidth: 62px;
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.logo {
-  background: red;
+html, body {
+  background: #0f0f0f;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
+  overflow: hidden;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10vh;
+  opacity: 0;
+  animation: fadeIn 1.5s 0.2s forwards;
+}
+
+#links {
+  width: 100%;
+  
+  ul {
+    transition: all 0.3s;
+    display: grid;
+    justify-content: center;
+
+    gap: 5vw;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(1, $iconWidth);
+
+    a {
+      position: relative;
+      transition: all 0.1s ease-in-out;
+      bottom: 0;
+      
+      &:hover {
+        bottom: 10px;
+      }
+    }
+
+    li {
+      opacity: 0;
+
+      @for $i from 0 through 10 {
+        &:nth-child(#{$i}) {
+          animation: fadeIn 1.5s #{0.13 * $i + 0.3}s forwards;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  #links {
+    width: initial;
+  }
+  #links ul {
+    grid-auto-flow: column;
+    grid-template-rows: repeat(2, $iconWidth);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
