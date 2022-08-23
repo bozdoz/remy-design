@@ -43,5 +43,6 @@ jobs:
           # Upload entire repository
           path: './public'
       - name: Deploy to GitHub Pages
+        timeout-minutes: 1 # 1 minute
         id: deployment
         uses: actions/deploy-pages@v1
