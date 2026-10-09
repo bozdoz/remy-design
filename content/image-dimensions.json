@@ -422,5 +422,77 @@
   "urbanarc-real-estate-group/urbanarc-placed-3-640.webp": [
     640,
     608
+  ],
+  "cards/pando-clean.webp": [
+    1260,
+    1000
+  ],
+  "cards/pando-clean-640.webp": [
+    640,
+    508
+  ],
+  "cards/beaver-creek-vineyard-clean.webp": [
+    1260,
+    1000
+  ],
+  "cards/beaver-creek-vineyard-clean-640.webp": [
+    640,
+    508
+  ],
+  "cards/collab-clean.webp": [
+    1260,
+    1000
+  ],
+  "cards/collab-clean-640.webp": [
+    640,
+    508
+  ],
+  "cards/amp-clean.webp": [
+    1260,
+    1000
+  ],
+  "cards/amp-clean-640.webp": [
+    640,
+    508
+  ],
+  "cards/bar-kismet-clean.webp": [
+    1260,
+    1000
+  ],
+  "cards/bar-kismet-clean-640.webp": [
+    640,
+    508
+  ],
+  "cards/imsi-clean.webp": [
+    1260,
+    1000
+  ],
+  "cards/imsi-clean-640.webp": [
+    640,
+    508
+  ],
+  "cards/starling-architects-clean.webp": [
+    1260,
+    1000
+  ],
+  "cards/starling-architects-clean-640.webp": [
+    640,
+    508
+  ],
+  "cards/urbanarc-real-estate-group-clean.webp": [
+    1260,
+    1000
+  ],
+  "cards/urbanarc-real-estate-group-clean-640.webp": [
+    640,
+    508
+  ],
+  "cards/anapolie-pizza-clean.webp": [
+    1260,
+    1000
+  ],
+  "cards/anapolie-pizza-clean-640.webp": [
+    640,
+    508
   ]
 }
