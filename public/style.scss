@@ -147,4 +147,4 @@ body{max-width:1900px;margin-inline:auto}
 
 
 
-@media(max-width:640px){.contact.patterned::before{background-size:150% auto}}
+@media(max-width:640px){.contact.patterned::before{inset:0;aspect-ratio:auto;background-size:150% auto;background-position:center top;background-repeat:repeat-y}}
