@@ -7,7 +7,7 @@ function walk(dir){return fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.
 let count=0;
 for(const file of walk(root).filter(f=>f.endsWith('.html'))){
  const html=fs.readFileSync(file,'utf8');
- assert(html.includes('<html lang="en">'),`${file}: document language missing`);
+ assert(html.includes('<html lang="en-CA">'),`${file}: document language missing`);
  assert(html.includes('name="viewport"'),`${file}: viewport missing`);
  assert.equal((html.match(/<h1\b/g)||[]).length,1,`${file}: expected one primary heading`);
  for(const m of html.matchAll(/(?:src|href|poster|data-src)="(\/[^"#]*)(?:#[^"]*)?"/g)){
