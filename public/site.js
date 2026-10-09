@@ -134,21 +134,20 @@ window.addEventListener('resize',queueServiceHighlight);
 mobileServices.addEventListener('change',queueServiceHighlight);
 updateServiceHighlight();
 
-// Start entrances after the browser can present the page, including restores.
-let heroEntrance=0;
-async function startHeroEntrance(){
- const run=++heroEntrance;
- const root=document.documentElement;
- root.classList.remove('hero-ready');
- root.classList.add('hero-pending');
- await document.fonts.ready;
- if(document.hidden)return;
+// Content is visible by default; motion never depends on fonts or load events.
+let heroEntrance=0,heroFallback;
+function startHeroEntrance(){
+ const run=++heroEntrance,root=document.documentElement;
+ clearTimeout(heroFallback);
+ root.classList.remove('hero-pending','hero-ready');
+ if(document.hidden||reducedMotion.matches)return;
  requestAnimationFrame(()=>requestAnimationFrame(()=>{
   if(run!==heroEntrance||document.hidden)return;
-  root.classList.remove('hero-pending');
   root.classList.add('hero-ready');
+  // iOS webviews can suspend animation timelines during navigation.
+  heroFallback=setTimeout(()=>root.classList.remove('hero-ready'),3500);
  }));
 }
+startHeroEntrance();
 window.addEventListener('pageshow',startHeroEntrance);
-if(document.readyState==='complete')startHeroEntrance();
-document.addEventListener('visibilitychange',()=>{if(!document.hidden&&document.documentElement.classList.contains('hero-pending'))startHeroEntrance();});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)startHeroEntrance();});

@@ -136,9 +136,7 @@ body{max-width:1600px;margin-inline:auto}
  .menu-toggle[aria-expanded="true"] .menu-line-bottom{transform:translateY(-6px) rotate(-45deg);transform-origin:12px 18px}
 }
 
-@media(prefers-reduced-motion:no-preference){
- .hero-pending .hero-content>*{opacity:0;transform:translateY(24px)}
-}
+
 
 // Enlarge the decorative motif without changing mobile section dimensions.
 @media(max-width:640px){
