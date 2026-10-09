@@ -64,11 +64,11 @@ form label{line-height:1}.contact h2{line-height:.81}
 .hero .button-primary:hover{box-shadow:0 0 28px rgba(116,255,211,.45),0 0 64px rgba(0,243,170,.22)}
 @keyframes hero-enter{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 @media(prefers-reduced-motion:no-preference){
- .hero-content>.disciplines,.hero-content>h1,.hero-content>p,.hero-content>.button{animation:hero-enter 1.2s cubic-bezier(.22,1,.36,1) both}
- .hero-content>.disciplines{animation-delay:.08s}
- .hero-content>h1{animation-delay:.2s}
- .hero-content>p{animation-delay:.55s}
- .hero-content>.button{animation-delay:1s}
+ .hero-ready .hero-content>.disciplines,.hero-ready .hero-content>h1,.hero-ready .hero-content>p,.hero-ready .hero-content>.button{animation:hero-enter 1.2s cubic-bezier(.22,1,.36,1) both}
+ .hero-ready .hero-content>.disciplines{animation-delay:.08s}
+ .hero-ready .hero-content>h1{animation-delay:.2s}
+ .hero-ready .hero-content>p{animation-delay:.55s}
+ .hero-ready .hero-content>.button{animation-delay:1s}
 }
 
 // Keep navigation within reach while letting the page take priority on scroll.
@@ -114,11 +114,11 @@ body{max-width:1900px;margin-inline:auto}
  .hero .button-primary{box-shadow:0 0 24px rgba(116,255,211,.32),0 0 56px rgba(0,243,170,.14)}
 }
 @media(max-width:640px) and (prefers-reduced-motion:no-preference){
- .hero-content>.disciplines,.hero-content>h1,.hero-content>p,.hero-content>.button{animation:hero-enter 1.2s cubic-bezier(.22,1,.36,1) both}
- .hero-content>.disciplines{animation-delay:.08s}
- .hero-content>h1{animation-delay:.2s}
- .hero-content>p{animation-delay:.55s}
- .hero-content>.button{animation-delay:1s}
+ .hero-ready .hero-content>.disciplines,.hero-ready .hero-content>h1,.hero-ready .hero-content>p,.hero-ready .hero-content>.button{animation:hero-enter 1.2s cubic-bezier(.22,1,.36,1) both}
+ .hero-ready .hero-content>.disciplines{animation-delay:.08s}
+ .hero-ready .hero-content>h1{animation-delay:.2s}
+ .hero-ready .hero-content>p{animation-delay:.55s}
+ .hero-ready .hero-content>.button{animation-delay:1s}
 }
 
 @media(max-width:900px) and (hover:none){
@@ -134,4 +134,8 @@ body{max-width:1900px;margin-inline:auto}
  .menu-toggle[aria-expanded="true"] .menu-line-top{transform:translateY(6px) rotate(45deg);transform-origin:12px 6px}
  .menu-toggle[aria-expanded="true"] .menu-line-middle{opacity:0}
  .menu-toggle[aria-expanded="true"] .menu-line-bottom{transform:translateY(-6px) rotate(-45deg);transform-origin:12px 18px}
+}
+
+@media(prefers-reduced-motion:no-preference){
+ .hero-pending .hero-content>*{opacity:0;transform:translateY(24px)}
 }

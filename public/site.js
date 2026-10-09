@@ -133,3 +133,22 @@ window.addEventListener('scroll',queueServiceHighlight,{passive:true});
 window.addEventListener('resize',queueServiceHighlight);
 mobileServices.addEventListener('change',queueServiceHighlight);
 updateServiceHighlight();
+
+// Start entrances after the browser can present the page, including restores.
+let heroEntrance=0;
+async function startHeroEntrance(){
+ const run=++heroEntrance;
+ const root=document.documentElement;
+ root.classList.remove('hero-ready');
+ root.classList.add('hero-pending');
+ await document.fonts.ready;
+ if(document.hidden)return;
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{
+  if(run!==heroEntrance||document.hidden)return;
+  root.classList.remove('hero-pending');
+  root.classList.add('hero-ready');
+ }));
+}
+window.addEventListener('pageshow',startHeroEntrance);
+if(document.readyState==='complete')startHeroEntrance();
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&document.documentElement.classList.contains('hero-pending'))startHeroEntrance();});
