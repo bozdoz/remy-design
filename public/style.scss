@@ -150,3 +150,17 @@ body{max-width:1900px;margin-inline:auto}
 @media(max-width:640px){.contact.patterned::before{inset:0;aspect-ratio:auto;background-size:150% auto;background-position:center top;background-repeat:repeat-y}}
 
 @media(max-width:640px){.hero .disciplines{font-size:10.35px;gap:17.25px}.hero .disciplines img{width:11.5px}}
+
+// Give mobile sections twenty percent more breathing room.
+@media(max-width:640px){
+ .hero{padding-bottom:105.6px}
+ .section{padding-top:67.2px;padding-bottom:28.8px}
+ .brands{padding-bottom:38.4px}
+ .profile{padding-bottom:28.8px}
+ .contact{margin-top:67.2px;padding-top:115.2px;padding-bottom:57.6px}
+ .case-hero{padding-top:57.6px;padding-bottom:28.8px}
+ .case-overview{padding-block:33.6px}
+ .case-main hr{margin-block:28.8px}
+ .case-row,.identity-strip,.case-finale{padding-block:33.6px}
+ .case-navigation{padding-top:38.4px;padding-bottom:57.6px}
+}
