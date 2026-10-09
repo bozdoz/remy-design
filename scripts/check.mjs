@@ -11,7 +11,7 @@ for(const file of walk(root).filter(f=>f.endsWith('.html'))){
  assert(html.includes('name="viewport"'),`${file}: viewport missing`);
  assert.equal((html.match(/<h1\b/g)||[]).length,1,`${file}: expected one primary heading`);
  for(const m of html.matchAll(/(?:src|href|poster|data-src)="(\/[^"#]*)(?:#[^"]*)?"/g)){
-  const route=decodeURIComponent(m[1]);
+  const route=decodeURIComponent(m[1].split('?')[0]);
   const resolved=path.join(root,route.endsWith('/')?`${route}index.html`:route);
   assert(fs.existsSync(resolved),`${file}: broken local reference ${route}`);
   assert(fs.statSync(resolved).size>0,`${file}: empty local reference ${route}`);count++;
