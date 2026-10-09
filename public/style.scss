@@ -174,3 +174,6 @@ body{max-width:1900px;margin-inline:auto}
 .project-tags{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:24px 0 0}
 .project-tags li{font-size:clamp(12px,min(.85vw,16.15px),17px);line-height:1.2;border:1px solid #ffffff80;border-radius:100px;padding:8px 12px;background:#0003}
 @media(max-width:640px){.project-card-copy{padding:20px}.project-card-copy h3{font-size:30px}.project-card-copy>p{font-size:20px}.project-tags{margin-top:20px;gap:7px}.project-tags li{font-size:13px;padding:7px 10px}}
+
+// Supplied homepage tiles already include their typography and gradient.
+.project-card::after{content:none}
