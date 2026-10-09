@@ -139,3 +139,8 @@ body{max-width:1900px;margin-inline:auto}
 @media(prefers-reduced-motion:no-preference){
  .hero-pending .hero-content>*{opacity:0;transform:translateY(24px)}
 }
+
+// Enlarge the decorative motif without changing mobile section dimensions.
+@media(max-width:640px){
+ .hero.patterned::before,.contact.patterned::before{background-size:300% auto}
+}
