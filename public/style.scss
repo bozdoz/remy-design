@@ -177,3 +177,9 @@ body{max-width:1900px;margin-inline:auto}
 
 // Supplied homepage tiles already include their typography and gradient.
 .project-card::after{content:none}
+
+// Tighten anchor landings without changing normal section spacing.
+@media(max-width:640px){
+ html{scroll-padding-top:58.8px}
+ .section{scroll-margin-top:21px}
+}
