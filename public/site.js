@@ -9,6 +9,7 @@ menuButton?.addEventListener('click', () => {
 nav?.addEventListener('click', event => {if(event.target.closest('a')) closeMenu();});
 document.addEventListener('keydown', event => {if(event.key==='Escape'&&menuButton?.getAttribute('aria-expanded')==='true'){closeMenu();menuButton.focus();}});
 matchMedia('(min-width: 641px)').addEventListener('change', event => {if(event.matches) closeMenu();});
+document.addEventListener('click',event=>{if(menuButton?.getAttribute('aria-expanded')==='true'&&!nav.contains(event.target)&&!menuButton.contains(event.target))closeMenu();});
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const videos = [...document.querySelectorAll('video[data-motion]')];
 function loadVideo(video) {

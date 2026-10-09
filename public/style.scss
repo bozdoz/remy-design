@@ -126,3 +126,12 @@ body{max-width:1900px;margin-inline:auto}
  .service-card.is-centred h3{color:#000}
  .service-card.is-centred>img{filter:brightness(0)}
 }
+
+@media(max-width:640px){
+ .site-header nav{display:flex;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-10px);transition:opacity .3s ease,transform .35s cubic-bezier(.22,1,.36,1),visibility 0s .35s}
+ .site-header nav.is-open{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0);transition-delay:0s}
+ .menu-line{transform-origin:12px 12px;transition:transform .3s ease,opacity .2s ease}
+ .menu-toggle[aria-expanded="true"] .menu-line-top{transform:translateY(6px) rotate(45deg);transform-origin:12px 6px}
+ .menu-toggle[aria-expanded="true"] .menu-line-middle{opacity:0}
+ .menu-toggle[aria-expanded="true"] .menu-line-bottom{transform:translateY(-6px) rotate(-45deg);transform-origin:12px 18px}
+}
