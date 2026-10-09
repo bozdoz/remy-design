@@ -114,3 +114,21 @@ if(form){
     summary.hidden=controls.every(field=>field.validity.valid);
   });
 }
+
+// Touch screens use the centre of the viewport as the service highlight zone.
+const mobileServices=matchMedia('(max-width:900px) and (hover:none)');
+const serviceCards=[...document.querySelectorAll('.service-card')];
+let serviceTick=false;
+function updateServiceHighlight(){
+  const centre=innerHeight/2;
+  for(const card of serviceCards){
+    const bounds=card.getBoundingClientRect();
+    card.classList.toggle('is-centred',mobileServices.matches&&bounds.top<=centre&&bounds.bottom>=centre);
+  }
+  serviceTick=false;
+}
+function queueServiceHighlight(){if(!serviceTick){serviceTick=true;requestAnimationFrame(updateServiceHighlight);}}
+window.addEventListener('scroll',queueServiceHighlight,{passive:true});
+window.addEventListener('resize',queueServiceHighlight);
+mobileServices.addEventListener('change',queueServiceHighlight);
+updateServiceHighlight();

@@ -120,3 +120,9 @@ body{max-width:1900px;margin-inline:auto}
  .hero-content>p{animation-delay:.55s}
  .hero-content>.button{animation-delay:1s}
 }
+
+@media(max-width:900px) and (hover:none){
+ .service-card.is-centred{background:var(--green);color:#000}
+ .service-card.is-centred h3{color:#000}
+ .service-card.is-centred>img{filter:brightness(0)}
+}
