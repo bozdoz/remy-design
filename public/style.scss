@@ -183,3 +183,10 @@ body{max-width:1900px;margin-inline:auto}
  html{scroll-padding-top:58.8px}
  .section{scroll-margin-top:21px}
 }
+
+// Offset section padding when navigating directly to a mobile anchor.
+@media(max-width:640px){
+ html{scroll-padding-top:24px}
+ .section{scroll-margin-top:-43.2px}
+ .contact{scroll-margin-top:-91.2px}
+}
