@@ -99,3 +99,6 @@ body{max-width:1900px;margin-inline:auto}
 // Use the same slightly larger body size in the hero and profile.
 .hero-content>p,.profile-copy>p{font-size:clamp(19px,calc(min(1.25vw,23.75px) + 2px),32px)}
 @media(max-width:640px){.hero-content>p,.profile-copy>p{font-size:19px}}
+
+// Align separators with the visible capitals rather than the font line box.
+.disciplines img{transform:translateY(-.11em) rotate(45deg)}
