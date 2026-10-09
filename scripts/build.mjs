@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
-import * as sass from 'sass';
+import sass from 'sass';
 import { createRequire } from 'node:module';
 import autoprefixer from 'autoprefixer';
 const require = createRequire(import.meta.url);
