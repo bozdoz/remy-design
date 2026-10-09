@@ -25,7 +25,7 @@ for(const p of projects){
  assert(p.placements.every(Boolean),`Missing image for ${p.slug}`);
 }
 const home=fs.readFileSync(path.join(root,'index.html'),'utf8');
-assert(home.includes('action="https://formsubmit.co/jeremyrcormier@gmail.com"'));
+assert(home.includes('action="https://formsubmit.co/e821d94bc8a38489dfc9f1fb05de10db"'));
 assert(home.includes('name="email" type="email" autocomplete="email" required'));
 assert(home.includes('name="message" rows="6" required'));
 const pando=fs.readFileSync(path.join(root,'projects/pando/index.html'),'utf8');
