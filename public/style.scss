@@ -108,3 +108,15 @@ body{max-width:1900px;margin-inline:auto}
 @media(max-width:640px){.contact{padding-top:96px}}
 
 @media(max-width:640px){.menu-toggle{width:44px;height:44px;padding:10px;border:0;border-radius:0;justify-content:center;color:#fff}.menu-toggle svg{display:block}}
+
+// Keep the desktop hero treatment explicit on small screens.
+@media(max-width:640px){
+ .hero .button-primary{box-shadow:0 0 24px rgba(116,255,211,.32),0 0 56px rgba(0,243,170,.14)}
+}
+@media(max-width:640px) and (prefers-reduced-motion:no-preference){
+ .hero-content>.disciplines,.hero-content>h1,.hero-content>p,.hero-content>.button{animation:hero-enter 1.2s cubic-bezier(.22,1,.36,1) both}
+ .hero-content>.disciplines{animation-delay:.08s}
+ .hero-content>h1{animation-delay:.2s}
+ .hero-content>p{animation-delay:.55s}
+ .hero-content>.button{animation-delay:1s}
+}
