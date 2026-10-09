@@ -102,3 +102,7 @@ body{max-width:1900px;margin-inline:auto}
 
 // Align separators with the visible capitals rather than the font line box.
 .disciplines img{transform:translateY(-.11em) rotate(45deg)}
+
+// Add breathing room above the shared contact heading.
+.contact{padding-top:calc(clamp(48px,min(2.5vw,47.5px),60px) + 40px)}
+@media(max-width:640px){.contact{padding-top:96px}}
