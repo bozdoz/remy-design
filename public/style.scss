@@ -106,3 +106,5 @@ body{max-width:1900px;margin-inline:auto}
 // Add breathing room above the shared contact heading.
 .contact{padding-top:calc(clamp(48px,min(2.5vw,47.5px),60px) + 40px)}
 @media(max-width:640px){.contact{padding-top:96px}}
+
+@media(max-width:640px){.menu-toggle{width:44px;height:44px;padding:10px;border:0;border-radius:0;justify-content:center;color:#fff}.menu-toggle svg{display:block}}
