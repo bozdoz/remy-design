@@ -164,3 +164,13 @@ body{max-width:1900px;margin-inline:auto}
  .case-row,.identity-strip,.case-finale{padding-block:33.6px}
  .case-navigation{padding-top:38.4px;padding-bottom:57.6px}
 }
+
+// Live tile typography remains sharp and readable at every breakpoint.
+.project-card{isolation:isolate}
+.project-card::after{content:'';position:absolute;inset:0;z-index:0;background:linear-gradient(transparent 25%,rgba(0,0,0,.5) 50%,rgba(0,0,0,.94) 100%);pointer-events:none}
+.project-card-copy{position:absolute;inset:auto 0 0;z-index:1;padding:clamp(18px,min(1.4vw,26.6px),27px);color:#fff}
+.project-card-copy h3{font-size:clamp(26px,min(2vw,38px),38px);line-height:1.1;font-weight:500;color:#fff}
+.project-card-copy>p{font-size:clamp(17px,min(1.3vw,24.7px),25px);line-height:1.25;margin-top:10px;font-weight:300}
+.project-tags{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:24px 0 0}
+.project-tags li{font-size:clamp(12px,min(.85vw,16.15px),17px);line-height:1.2;border:1px solid #ffffff80;border-radius:100px;padding:8px 12px;background:#0003}
+@media(max-width:640px){.project-card-copy{padding:20px}.project-card-copy h3{font-size:30px}.project-card-copy>p{font-size:20px}.project-tags{margin-top:20px;gap:7px}.project-tags li{font-size:13px;padding:7px 10px}}
