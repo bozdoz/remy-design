@@ -19,7 +19,8 @@ function setButton(video) {
   const button=video.parentElement.querySelector('.motion-toggle');
   const playing=!video.paused;
   const label=playing?'Pause animation':'Play animation';
-  button.querySelector('.button-label').textContent=label;
+  button.querySelector('.motion-icon').innerHTML=playing?'<path d="M7 5h4v14H7zm6 0h4v14h-4z" fill="currentColor"/>':'<path d="M8 5v14l11-7z" fill="currentColor"/>';
+  button.title=label;
   button.setAttribute('aria-label',label);
   button.setAttribute('aria-pressed',String(playing));
 }
