@@ -142,5 +142,5 @@ body{max-width:1900px;margin-inline:auto}
 
 // Enlarge the decorative motif without changing mobile section dimensions.
 @media(max-width:640px){
- .hero.patterned::before,.contact.patterned::before{background-size:200% auto}
+ .hero.patterned::before,.contact.patterned::before{background-size:250% auto}
 }
