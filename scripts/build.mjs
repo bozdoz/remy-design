@@ -13,7 +13,11 @@ const assetVersion=createHash('sha256').update(fs.readFileSync(path.join(publicD
 const projects = JSON.parse(fs.readFileSync(path.join(root, 'content/projects.json'), 'utf8'));
 const dimensions = JSON.parse(fs.readFileSync(path.join(root,'content/image-dimensions.json'),'utf8'));
 const escape = (s) => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const asset = (file) => `/assets/${file}`;
+const homeProjectVersions=JSON.parse(fs.readFileSync(path.join(root,'content/home-project-versions.json'),'utf8'));
+const asset = (file) => {
+ const slug=file.startsWith('home-projects/')?path.basename(file).replace(/(?:-640)?\.webp$/,''):null;
+ return `/assets/${file}${homeProjectVersions[slug]?'?v='+homeProjectVersions[slug]:''}`;
+};
 function image(file, alt, attributes = '', desktopSize = '') {
   file=file.replace(/\.png$/,'.webp');
   const small=file.replace('.webp','-640.webp');
