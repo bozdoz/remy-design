@@ -18,8 +18,9 @@ function loadVideo(video) {
 function setButton(video) {
   const button=video.parentElement.querySelector('.motion-toggle');
   const playing=!video.paused;
-  button.textContent=playing?'Pause animation':'Play animation';
-  button.setAttribute('aria-label',button.textContent);
+  const label=playing?'Pause animation':'Play animation';
+  button.querySelector('.button-label').textContent=label;
+  button.setAttribute('aria-label',label);
   button.setAttribute('aria-pressed',String(playing));
 }
 const observer = new IntersectionObserver(entries => {
@@ -41,6 +42,7 @@ for(const video of videos){
   video.parentElement.querySelector('.motion-toggle').addEventListener('click',()=>{
     if(video.paused){video.dataset.userPaused='false';loadVideo(video);video.play().catch(()=>setButton(video));}
     else{video.dataset.userPaused='true';video.pause();}
+    setButton(video);
   });
 }
 reducedMotion.addEventListener('change',()=>{for(const video of videos){if(reducedMotion.matches)video.pause();}});
