@@ -1,3 +1,7 @@
 node_modules
 public/style.css
 public/style.css.map
+design-reference/
+source-assets/
+qa/
+scripts/browser-check.cjs

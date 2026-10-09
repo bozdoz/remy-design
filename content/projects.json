@@ -1,0 +1,218 @@
+[
+  {
+    "slug": "pando",
+    "name": "Pando",
+    "tagline": "Round up. Give back.",
+    "category": "Product + Branding",
+    "tags": [
+      "Product Strategy",
+      "Design System",
+      "Brand Strategy"
+    ],
+    "placements": [
+      "pando-placed-1.webp",
+      "pando-placed-2.mp4",
+      "pando-placed-3.webp",
+      "pando-placed-4.mp4",
+      "pando-placed-5.svg",
+      "pando-placed-6.svg",
+      "pando-placed-7.mp4"
+    ],
+    "overview": "Pando is a purpose-driven loyalty platform that helps businesses and their customers support verified charities. Participating retailers round up each purchase and donate the difference to a cause selected by the customer. The app allows users to discover participating businesses, explore approved charities and choose where their contributions are directed—turning everyday purchases into meaningful social impact.",
+    "challenges": "Pando needed to simplify a concept involving customers, retailers, charities and recurring donations without losing clarity or trust. Through user interviews, usability testing and data analysis, we identified friction within the core experience and uncovered opportunities to improve navigation, engagement and retention. The project also required a refreshed brand and interface within a very tight delivery timeline.",
+    "outcome": "We redesigned the core user flows, updated the brand aesthetic and created a more intuitive UI/UX that made the platform easier to understand and use. The improved experience decreased monthly churn by 8% while increasing average session time by approximately 30 seconds to nearly three minutes—helping Pando strengthen engagement while building a clearer foundation for growth.",
+    "draft": false
+  },
+  {
+    "slug": "beaver-creek-vineyard",
+    "name": "Beaver Creek Vineyard",
+    "tagline": "Take your time and unwind.",
+    "category": "Branding + Marketing",
+    "tags": [
+      "Brand Strategy",
+      "Growth Strategy",
+      "Social Media"
+    ],
+    "placements": [
+      "beaver-creek-placed-1.webp",
+      "beaver-creek-placed-2.mp4",
+      "beaver-creek-placed-3.webp",
+      "beaver-creek-placed-4.svg",
+      "beaver-creek-placed-5.webp",
+      "beaver-creek-placed-6.svg",
+      "beaver-creek-placed-7.mp4"
+    ],
+    "overview": "A visual identity for Beaver Creek Vineyard, expressed through wine labels, packaging and branded materials. The work brings a warm, considered character to the brand across bottle, can and print applications.",
+    "challenges": "Bring a consistent visual language to a range of packaging formats while retaining the vineyard’s individual character. The design needed to work at the scale of a bottle label as well as larger brand applications.",
+    "outcome": "The resulting collection brings together typography, illustration, colour and packaging into a coherent brand expression. The work shown includes wine labels, canned products and supporting identity applications.",
+    "draft": true
+  },
+  {
+    "slug": "collab",
+    "name": "Collab.",
+    "tagline": "Stay in the moment. Relive the memory, together.",
+    "category": "Product + Branding + Marketing",
+    "tags": [
+      "Product Strategy",
+      "Brand Strategy",
+      "Growth Strategy"
+    ],
+    "placements": [
+      "collab-placed-1.webp",
+      "collab-placed-2.mp4",
+      "collab-placed-3.mp4",
+      "collab-placed-4.svg",
+      "collab-placed-5.webp",
+      "collab-placed-6.svg",
+      "collab-placed-7.webp"
+    ],
+    "overview": "Collab brings shared memories together through a group photo and video experience. The work explores how a welcoming identity and approachable interface can connect guests, events and the moments they capture.",
+    "challenges": "Explain a shared capture experience clearly, from joining an event to contributing a memory. The identity needed to feel at home across the mobile interface, event signage and promotional material.",
+    "outcome": "The design brings the Collab identity into mobile screens, event invitations and campaign applications. A consistent visual language connects the product experience with the moments and communities it serves.",
+    "draft": true
+  },
+  {
+    "slug": "amp",
+    "name": "Advanced Medical Pods",
+    "tagline": "Advanced medical pods.",
+    "category": "Product + Branding",
+    "tags": [
+      "Product Strategy",
+      "Design System",
+      "Brand Strategy"
+    ],
+    "placements": [
+      "amp-placed-1.webp",
+      "amp-placed-2.mp4",
+      "amp-placed-3.webp",
+      "amp-placed-4.svg",
+      "amp-placed-5.webp",
+      "amp-placed-6.svg",
+      "amp-placed-7.webp"
+    ],
+    "overview": "Advanced Medical Pods explores a connected healthcare experience across physical spaces and digital interfaces. The work includes identity, interface concepts and visual applications for medical pods.",
+    "challenges": "Create a visual language that can connect a healthcare service, its digital touchpoints and its physical environment. The interface and identity needed to read clearly across different screen sizes and applications.",
+    "outcome": "The work brings together a distinctive identity, pod interface concepts and remote consultation screens. Supporting applications show how the system can carry through to the physical pod environment.",
+    "draft": true
+  },
+  {
+    "slug": "bar-kismet",
+    "name": "Bar Kismet",
+    "tagline": "Fresh seafood and handmade pasta.",
+    "category": "Branding",
+    "tags": [
+      "Brand Strategy",
+      "Logo & Visual Identity",
+      "Social Media"
+    ],
+    "placements": [
+      "bar-kismet-placed-1.webp",
+      "bar-kismet-placed-2.webp",
+      "bar-kismet-placed-3.webp",
+      "bar-kismet-placed-4.svg",
+      "bar-kismet-placed-5.webp",
+      "bar-kismet-placed-6.svg",
+      "bar-kismet-placed-7.webp"
+    ],
+    "overview": "A visual identity for Bar Kismet, a restaurant centred on fresh seafood and handmade pasta. The work pairs an expressive wordmark with a restrained colour palette across menus, signage and printed materials.",
+    "challenges": "Translate the character of the restaurant into an identity that works both at the table and on the street. The design needed to remain recognisable across intimate printed details and exterior signage.",
+    "outcome": "The resulting identity is shown across business cards, menus, stationery and storefront applications. Typography, colour and illustration create a consistent visual thread throughout the restaurant experience.",
+    "draft": true
+  },
+  {
+    "slug": "imsi",
+    "name": "IMSI",
+    "tagline": "We make data ingestion a breeze.",
+    "category": "Product + Marketing",
+    "tags": [
+      "Product Strategy",
+      "Product Design + UX",
+      "Growth Strategy"
+    ],
+    "placements": [
+      "imsi-placed-1.webp",
+      "imsi-placed-2.mp4",
+      "imsi-placed-3.mp4",
+      "imsi-placed-4.webp",
+      "imsi-placed-5.webp",
+      "imsi-placed-6.svg",
+      "imsi-placed-7.webp"
+    ],
+    "overview": "IMSI explores a product and brand experience for data ingestion and integration. The work combines interface concepts with an identity that carries through digital and printed touchpoints.",
+    "challenges": "Make a complex technical offering easier to communicate visually. The brand and interface needed to support both an overview of the product and more detailed, data-rich screens.",
+    "outcome": "The work presents a connected visual system across dashboard concepts, mobile marketing screens and branded stationery. A strong typographic identity and focused colour palette connect the applications.",
+    "draft": true
+  },
+  {
+    "slug": "starling-architects",
+    "name": "Starling Architects",
+    "tagline": "We see architecture as a living dialogue.",
+    "category": "Branding + Marketing",
+    "tags": [
+      "Brand Strategy",
+      "Logo & Visual Identity",
+      "Social Media"
+    ],
+    "placements": [
+      "starling-placed-1.webp",
+      "starling-placed-2.webp",
+      "starling-placed-3.webp",
+      "starling-placed-4.svg",
+      "starling-placed-5.svg",
+      "starling-placed-6.svg",
+      "starling-placed-7.webp"
+    ],
+    "overview": "A visual identity for Starling Architects, built around the idea of architecture as a living dialogue. The work translates that direction into a wordmark, symbol and collection of branded applications.",
+    "challenges": "Express an architectural practice through a visual language that balances precision with character. The identity needed to work across stationery, presentation materials and signage at a range of scales.",
+    "outcome": "The identity is shown across stationery, business cards, site signage and architectural hoarding. Its symbol, typography and muted palette create a consistent presence across the collection.",
+    "draft": true
+  },
+  {
+    "slug": "urbanarc-real-estate-group",
+    "name": "Urbanarc Real Estate Group",
+    "tagline": "Let’s find your new home.",
+    "category": "Branding + Marketing",
+    "tags": [
+      "Brand Strategy",
+      "Logo & Visual Identity",
+      "Growth Strategy"
+    ],
+    "placements": [
+      "urbanarc-placed-1.webp",
+      "urbanarc-placed-2.webp",
+      "urbanarc-placed-3.mp4",
+      "urbanarc-placed-4.svg",
+      "urbanarc-placed-5.svg",
+      "urbanarc-placed-6.svg",
+      "urbanarc-placed-7.webp"
+    ],
+    "overview": "A visual identity for Urbanarc Real Estate Group, applied across property marketing and brand materials. The work combines an architectural symbol with clear typography and a warm, restrained palette.",
+    "challenges": "Create an identity that remains legible and recognisable across property advertising, printed materials and building signage. Each application needed to connect back to the same brand language.",
+    "outcome": "The resulting system is shown across billboard advertising, stationery, storefront signage and an open-house promotion. The identity provides a consistent foundation for these different marketing formats.",
+    "draft": true
+  },
+  {
+    "slug": "anapolie-pizza",
+    "name": "Anapolie Pizza",
+    "tagline": "Our specialty is our quality.",
+    "category": "Product + Branding",
+    "tags": [
+      "Product Strategy",
+      "Brand Strategy",
+      "Logo & Visual Identity"
+    ],
+    "placements": [
+      "anapolie-placed-1.webp",
+      "anapolie-placed-2.webp",
+      "anapolie-placed-3.mp4",
+      "anapolie-placed-4.svg",
+      "anapolie-placed-5.svg",
+      "anapolie-placed-6.svg",
+      "anapolie-placed-7.mp4"
+    ],
+    "overview": "A visual identity for Anapolie Pizza, celebrating the character of a neighbourhood pizza brand. The work centres on a distinctive wordmark and supporting identity elements across packaging and signage.",
+    "challenges": "Bring the brand’s personality into everyday customer touchpoints. The visual system needed to work on pizza packaging, exterior signage and supporting promotional applications.",
+    "outcome": "The work brings together an expressive wordmark, character illustration and warm colour palette. Packaging and signage applications show how the identity carries through the customer experience.",
+    "draft": true
+  }
+]

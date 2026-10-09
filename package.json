@@ -2,10 +2,11 @@
   "name": "remy-design",
   "private": "true",
   "scripts": {
-    "build": "npm run build:css",
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs",
     "build:css": "sass public/style.scss --style=compressed | postcss -u autoprefixer -o public/style.css --no-map",
-    "start": "npm run watch",
-    "watch": "npm-run-all -p watch:*",
+    "start": "node scripts/dev.mjs",
+    "watch": "node scripts/dev.mjs",
     "watch:css": "sass public/style.scss public/style.css --watch",
     "watch:proxy": "browser-sync start --config bs-config.js"
   },
