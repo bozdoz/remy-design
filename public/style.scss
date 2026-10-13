@@ -1460,3 +1460,26 @@ body {
     scroll-margin-top: -91.2px;
   }
 }
+
+// Desktop navigation: reveal the underline from left to right on hover.
+@media (min-width: 641px) and (hover: hover) and (pointer: fine) {
+  .site-header nav a {
+    position: relative;
+  }
+  .site-header nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -7px;
+    height: 2px;
+    background: var(--green);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.3s ease;
+  }
+  .site-header nav a:hover::after,
+  .site-header nav a:focus-visible::after {
+    transform: scaleX(1);
+  }
+}
