@@ -4,7 +4,11 @@
     "name": "Pando",
     "tagline": "Round up. Give back.",
     "category": "Product + Branding",
-    "tags": ["Product Strategy", "Design System", "Brand Strategy"],
+    "tags": [
+      "Product Strategy",
+      "Design System",
+      "Brand Strategy"
+    ],
     "placements": [
       "pando-placed-1.webp",
       "pando-placed-2-paused.mp4",
@@ -24,7 +28,11 @@
     "name": "Beaver Creek Vineyard",
     "tagline": "Take your time and unwind.",
     "category": "Branding + Marketing",
-    "tags": ["Brand Strategy", "Growth Strategy", "Social Media"],
+    "tags": [
+      "Brand Strategy",
+      "Growth Strategy",
+      "Social Media"
+    ],
     "placements": [
       "beaver-creek-placed-1.webp",
       "beaver-creek-placed-2.mp4",
@@ -34,17 +42,21 @@
       "beaver-creek-placed-6.svg",
       "beaver-creek-placed-7.mp4"
     ],
-    "overview": "A visual identity for Beaver Creek Vineyard, expressed through wine labels, packaging and branded materials. The work brings a warm, considered character to the brand across bottle, can and print applications.",
-    "challenges": "Bring a consistent visual language to a range of packaging formats while retaining the vineyard’s individual character. The design needed to work at the scale of a bottle label as well as larger brand applications.",
-    "outcome": "The resulting collection brings together typography, illustration, colour and packaging into a coherent brand expression. The work shown includes wine labels, canned products and supporting identity applications.",
-    "draft": true
+    "overview": "Beaver Creek Vineyard is a family-owned winery and wedding venue in Lawrencetown, Nova Scotia. The brand refresh connects its Annapolis Valley roots with a clean, rustic visual identity that reflects the warmth of the family and the surrounding landscape.",
+    "challenges": "New ownership called for a fresh identity that respected the vineyard’s history. The challenge was to create a bold, distinctly Canadian logo and an authentic, organic visual style that felt familiar to locals while welcoming a new generation of guests.",
+    "outcome": "The refreshed brand captured the vineyard’s character and the appeal of its weddings and events. Local visitors responded with enthusiasm and support, recognising an identity that felt connected to the place, its community and the experience it offers.",
+    "draft": false
   },
   {
     "slug": "collab",
     "name": "Collab.",
     "tagline": "Stay in the moment. Relive the memory, together.",
     "category": "Product + Branding + Marketing",
-    "tags": ["Product Strategy", "Brand Strategy", "Growth Strategy"],
+    "tags": [
+      "Product Strategy",
+      "Brand Strategy",
+      "Growth Strategy"
+    ],
     "placements": [
       "collab-placed-1.webp",
       "collab-placed-2.mp4",
@@ -54,17 +66,21 @@
       "collab-placed-6.svg",
       "collab-placed-7.webp"
     ],
-    "overview": "Collab brings shared memories together through a group photo and video experience. The work explores how a welcoming identity and approachable interface can connect guests, events and the moments they capture.",
-    "challenges": "Explain a shared capture experience clearly, from joining an event to contributing a memory. The identity needed to feel at home across the mobile interface, event signage and promotional material.",
-    "outcome": "The design brings the Collab identity into mobile screens, event invitations and campaign applications. A consistent visual language connects the product experience with the moments and communities it serves.",
-    "draft": true
+    "overview": "Collab is a media-sharing startup backed by more than $2.5 million in funding. Built for weddings, sports, concerts and conferences, the app makes it easy to collect moments in shared albums across devices and operating systems, bringing everyone’s perspective together.",
+    "challenges": "When I joined, the team needed clearer product direction and discipline. I focused on defining the ideal customer, unique value proposition, core user journey and North Star metrics, giving the team a shared framework for prioritising features and evaluating progress.",
+    "outcome": "Stitch combined participants’ photos and music into one event highlight after a shared countdown. The product generated approximately $1,000 in monthly recurring revenue, achieved 21% stickiness (daily active users divided by monthly active users) and converted 26% of free users to paid.",
+    "draft": false
   },
   {
     "slug": "amp",
     "name": "Advanced Medical Pods",
     "tagline": "Advanced medical pods.",
     "category": "Product + Branding",
-    "tags": ["Product Strategy", "Design System", "Brand Strategy"],
+    "tags": [
+      "Product Strategy",
+      "Design System",
+      "Brand Strategy"
+    ],
     "placements": [
       "amp-placed-1.webp",
       "amp-placed-2.mp4",
@@ -84,7 +100,11 @@
     "name": "Bar Kismet",
     "tagline": "Fresh seafood and handmade pasta.",
     "category": "Branding",
-    "tags": ["Brand Strategy", "Logo & Visual Identity", "Social Media"],
+    "tags": [
+      "Brand Strategy",
+      "Logo & Visual Identity",
+      "Social Media"
+    ],
     "placements": [
       "bar-kismet-placed-1.webp",
       "bar-kismet-placed-2.webp",
@@ -104,7 +124,11 @@
     "name": "IMSI",
     "tagline": "We make data ingestion a breeze.",
     "category": "Product + Marketing",
-    "tags": ["Product Strategy", "Product Design + UX", "Growth Strategy"],
+    "tags": [
+      "Product Strategy",
+      "Product Design + UX",
+      "Growth Strategy"
+    ],
     "placements": [
       "imsi-placed-1.webp",
       "imsi-placed-2.mp4",
@@ -124,7 +148,11 @@
     "name": "Starling Architects",
     "tagline": "We see architecture as a living dialogue.",
     "category": "Branding + Marketing",
-    "tags": ["Brand Strategy", "Logo & Visual Identity", "Social Media"],
+    "tags": [
+      "Brand Strategy",
+      "Logo & Visual Identity",
+      "Social Media"
+    ],
     "placements": [
       "starling-placed-1.webp",
       "starling-placed-2.webp",
@@ -144,7 +172,11 @@
     "name": "Urbanarc Real Estate Group",
     "tagline": "Let’s find your new home.",
     "category": "Branding + Marketing",
-    "tags": ["Brand Strategy", "Logo & Visual Identity", "Growth Strategy"],
+    "tags": [
+      "Brand Strategy",
+      "Logo & Visual Identity",
+      "Growth Strategy"
+    ],
     "placements": [
       "urbanarc-placed-1.webp",
       "urbanarc-placed-2.webp",
@@ -164,7 +196,11 @@
     "name": "Anapolie Pizza",
     "tagline": "Our specialty is our quality.",
     "category": "Product + Branding",
-    "tags": ["Product Strategy", "Brand Strategy", "Logo & Visual Identity"],
+    "tags": [
+      "Product Strategy",
+      "Brand Strategy",
+      "Logo & Visual Identity"
+    ],
     "placements": [
       "anapolie-placed-1.webp",
       "anapolie-placed-2.webp",
