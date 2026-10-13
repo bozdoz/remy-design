@@ -43,7 +43,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
-          path: './public'
+          path: "./public"
       - name: Deploy to GitHub Pages
         timeout-minutes: 10
         id: deployment

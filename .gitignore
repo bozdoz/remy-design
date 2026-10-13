@@ -5,3 +5,6 @@ design-reference/
 source-assets/
 qa/
 scripts/browser-check.cjs
+
+# Edited source animations are local deliverables, not deployment assets.
+outputs/

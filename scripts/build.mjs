@@ -1,87 +1,286 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import {createHash} from 'node:crypto';
-import sass from 'sass';
-import { createRequire } from 'node:module';
-import autoprefixer from 'autoprefixer';
+import fs from "node:fs";
+import path from "node:path";
+import { createHash } from "node:crypto";
+import * as sassModule from "sass";
+// Sass versions in the lockfile and local installs expose different ESM shapes.
+const sass = sassModule.compile ? sassModule : sassModule.default;
+import { createRequire } from "node:module";
+import autoprefixer from "autoprefixer";
 const require = createRequire(import.meta.url);
-const postcss = createRequire(require.resolve('postcss-cli/package.json'))('postcss');
+const postcss = createRequire(require.resolve("postcss-cli/package.json"))(
+  "postcss",
+);
 
-const root = path.resolve(import.meta.dirname, '..');
-const publicDir = path.join(root, 'public');
-const assetVersion=createHash('sha256').update(fs.readFileSync(path.join(publicDir,'style.scss'))).update(fs.readFileSync(path.join(publicDir,'site.js'))).digest('hex').slice(0,12);
-const projects = JSON.parse(fs.readFileSync(path.join(root, 'content/projects.json'), 'utf8'));
-const dimensions = JSON.parse(fs.readFileSync(path.join(root,'content/image-dimensions.json'),'utf8'));
-const escape = (s) => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const homeProjectVersions=JSON.parse(fs.readFileSync(path.join(root,'content/home-project-versions.json'),'utf8'));
+const root = path.resolve(import.meta.dirname, "..");
+const publicDir = path.join(root, "public");
+const assetVersion = createHash("sha256")
+  .update(fs.readFileSync(path.join(publicDir, "style.scss")))
+  .update(fs.readFileSync(path.join(publicDir, "site.js")))
+  .digest("hex")
+  .slice(0, 12);
+const cvVersion = createHash("sha256")
+  .update(
+    fs.readFileSync(path.join(publicDir, "assets/Jeremy_Cormier_2026.pdf")),
+  )
+  .digest("hex")
+  .slice(0, 12);
+const projects = JSON.parse(
+  fs.readFileSync(path.join(root, "content/projects.json"), "utf8"),
+);
+const dimensions = JSON.parse(
+  fs.readFileSync(path.join(root, "content/image-dimensions.json"), "utf8"),
+);
+const escape = (s) =>
+  String(s).replace(
+    /[&<>"']/g,
+    (c) =>
+      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[
+        c
+      ],
+  );
+const homeProjectVersions = JSON.parse(
+  fs.readFileSync(
+    path.join(root, "content/home-project-versions.json"),
+    "utf8",
+  ),
+);
 const asset = (file) => {
- const slug=file.startsWith('home-projects/')?path.basename(file).replace(/(?:-640)?\.webp$/,''):null;
- return `/assets/${file}${homeProjectVersions[slug]?'?v='+homeProjectVersions[slug]:''}`;
+  const slug = file.startsWith("home-projects/")
+    ? path.basename(file).replace(/(?:-640)?\.webp$/, "")
+    : null;
+  return `/assets/${file}${homeProjectVersions[slug] ? "?v=" + homeProjectVersions[slug] : ""}`;
 };
-function image(file, alt, attributes = '', desktopSize = '') {
-  file=file.replace(/\.png$/,'.webp');
-  const small=file.replace('.webp','-640.webp');
-  const responsive=file.endsWith('.webp')?`srcset="${asset(small)} ${dimensions[small][0]}w, ${asset(file)} ${dimensions[file][0]}w" sizes="(max-width:640px) calc(100vw - 40px), (max-width:900px) ${file.startsWith('cards/')?'44':'88'}vw, ${desktopSize||(file.startsWith('cards/')||file.includes('Profile')?'27vw':'80vw')}"`:'';
-  return `<img src="${asset(file)}" ${responsive} alt="${escape(alt)}" ${attributes}>`;
+function image(file, alt, attributes = "", desktopSize = "") {
+  file = file.replace(/\.png$/, ".webp");
+  const small = file.replace(".webp", "-640.webp");
+  const responsive = file.endsWith(".webp")
+    ? `srcset="${asset(small)} ${dimensions[small][0]}w, ${asset(file)} ${dimensions[file][0]}w" sizes="(max-width:640px) calc(100vw - 40px), (max-width:900px) ${file.startsWith("cards/") ? "44" : "88"}vw, ${desktopSize || (file.startsWith("cards/") || file.includes("Profile") ? "27vw" : "80vw")}"`
+    : "";
+  const size = dimensions[file];
+  const intrinsic = size ? `width="${size[0]}" height="${size[1]}"` : "";
+  return `<img src="${asset(file)}" ${intrinsic} ${responsive} alt="${escape(alt)}" ${attributes}>`;
 }
-function media(project, number, className = '') {
+function media(project, number, className = "") {
   const file = project.placements[number - 1];
   if (!file) throw new Error(`Missing placement ${number} for ${project.slug}`);
   const src = `${project.slug}/${file}`;
-  const alt = `${project.name} — ${['hero presentation','brand application','product and identity application','identity detail','brand presentation','colour and identity system','project presentation'][number-1]}`;
-  if (file.endsWith('.mp4')) {
-    return `<figure class="media ${className}${project.slug==='pando'?' native-motion':''}"><video muted loop playsinline preload="none" poster="${asset(src.replace('.mp4','.webp'))}" aria-label="${escape(alt)}" data-motion><source data-src="${asset(src)}" type="video/mp4"></video><button class="motion-toggle" type="button" aria-label="Play animation" aria-pressed="false"><svg class="motion-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button></figure>`;
+  const alt = `${project.name} — ${["hero presentation", "brand application", "product and identity application", "identity detail", "brand presentation", "colour and identity system", "project presentation"][number - 1]}`;
+  if (file.endsWith(".mp4")) {
+    return `<figure class="media ${className}${project.slug === "pando" ? " native-motion" : ""}"><video muted loop playsinline preload="none" poster="${asset(src.replace(".mp4", ".webp"))}" aria-label="${escape(alt)}" data-motion><source data-src="${asset(src)}" type="video/mp4"></video><button class="motion-toggle" type="button" aria-label="Play animation" aria-pressed="false"><svg class="motion-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button></figure>`;
   }
-  return `<figure class="media ${className}">${image(src, alt, `loading="${number===1?'eager':'lazy'}" decoding="async"`, [1,7].includes(number)?'80vw':[4,6].includes(number)?'19vw':'40vw')}</figure>`;
+  return `<figure class="media ${className}">${image(src, alt, `loading="${number === 1 ? "eager" : "lazy"}" decoding="async"`, [1, 7].includes(number) ? "80vw" : [4, 6].includes(number) ? "19vw" : "40vw")}</figure>`;
 }
 function header(home = false) {
-  return `<a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="container nav-inner"><a class="logo" href="/" aria-label="Remy Digital home">${image('remy-digital-logo.svg','Remy Digital')}</a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation menu"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path class="menu-line menu-line-top" d="M4 6h16"/><path class="menu-line menu-line-middle" d="M4 12h16"/><path class="menu-line menu-line-bottom" d="M4 18h16"/></svg></button><nav id="primary-nav" aria-label="Main navigation"><a href="${home?'':'/'}#projects">Projects</a><a href="${home?'':'/'}#services">Services</a><a href="${home?'':'/'}#profile">Profile</a></nav><a class="button button-outline nav-contact" href="${home?'':'/'}#contact"><span class="button-label">Get in touch</span></a></div></header>`;
+  return `<a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="container nav-inner"><a class="logo" href="/" aria-label="Remy Digital home">${image("remy-digital-logo.svg", "Remy Digital")}</a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation menu"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path class="menu-line menu-line-top" d="M4 6h16"/><path class="menu-line menu-line-middle" d="M4 12h16"/><path class="menu-line menu-line-bottom" d="M4 18h16"/></svg></button><nav id="primary-nav" aria-label="Main navigation"><a href="${home ? "" : "/"}#projects">Projects</a><a href="${home ? "" : "/"}#services">Services</a><a href="${home ? "" : "/"}#profile">Profile</a></nav><a class="button button-outline nav-contact" href="${home ? "" : "/"}#contact"><span class="button-label">Get in touch</span></a></div></header>`;
 }
-const disciplines=(profile=false)=>`<div class="disciplines ${profile?'profile-disciplines':''}"><span>Product</span>${image(`figma/${profile?'img1':'img'}.svg`,'','aria-hidden="true"')}<span>Branding</span>${image(`figma/${profile?'img1':'img'}.svg`,'','aria-hidden="true"')}<span>Marketing</span></div>`;
-const sectionHeading=(eyebrow,title)=>`<div class="section-heading"><p class="eyebrow">${eyebrow}</p><h2>${title}</h2></div>`;
-const contactForm=()=>`<section id="contact" class="contact patterned"><div class="container"><div class="contact-heading"><h2>Get in touch</h2><p>I want to hear from you.</p></div><form action="https://formsubmit.co/e821d94bc8a38489dfc9f1fb05de10db" method="POST"><input type="hidden" name="_subject" value="New enquiry from Remy Digital"><input type="hidden" name="_template" value="table"><input type="hidden" name="_captcha" value="true"><input type="hidden" name="_next" value="https://remydesign.ca/thanks/"><div class="honeypot" aria-hidden="true"><label>Leave this field empty<input name="_honey" tabindex="-1" autocomplete="off"></label></div><div class="form-error-summary" role="alert" hidden>Please check the highlighted fields below.</div><div class="form-row"><div class="form-field"><label for="first-name">First Name</label><input id="first-name" aria-describedby="first-name-error" name="first_name" autocomplete="given-name" maxlength="100"><p class="field-error" id="first-name-error" hidden></p></div><div class="form-field"><label for="last-name">Last Name</label><input id="last-name" aria-describedby="last-name-error" name="last_name" autocomplete="family-name" maxlength="100"><p class="field-error" id="last-name-error" hidden></p></div></div><div class="form-field"><label for="email"><span>Email <span aria-hidden="true">*</span></span></label><input id="email" aria-describedby="email-error" name="email" type="email" autocomplete="email" required maxlength="254"><p class="field-error" id="email-error" hidden></p></div><div class="form-field"><label for="message">Message</label><textarea id="message" aria-describedby="message-error" name="message" rows="6" required maxlength="10000"></textarea><p class="field-error" id="message-error" hidden></p></div><div class="form-actions"><button class="button button-primary" type="submit"><span class="button-label">Send</span></button></div></form><p class="contact-alternative">Prefer email? <a href="mailto:jeremy@remydesign.ca">jeremy@remydesign.ca</a></p></div></section>`;
-const footer=()=>`<footer class="site-footer"><p>© 2026 remy digital <span aria-hidden="true">|</span> All rights reserved.</p></footer>`;
-const expertise=['Branding','Logo Design','Product Design','Product Management','Product Ownership','Head of Product','UX Design','AI','Prototyping','App Design','Design Systems'];
+const disciplines = (profile = false) =>
+  `<div class="disciplines ${profile ? "profile-disciplines" : ""}"><span>Product</span>${image(`figma/${profile ? "img1" : "img"}.svg`, "", 'aria-hidden="true"')}<span>Branding</span>${image(`figma/${profile ? "img1" : "img"}.svg`, "", 'aria-hidden="true"')}<span>Marketing</span></div>`;
+const sectionHeading = (eyebrow, title) =>
+  `<div class="section-heading"><p class="eyebrow">${eyebrow}</p><h2>${title}</h2></div>`;
+const contactForm = () =>
+  `<section id="contact" class="contact patterned"><div class="container"><div class="contact-heading"><h2>Get in touch</h2><p>I want to hear from you.</p></div><form action="https://formsubmit.co/e821d94bc8a38489dfc9f1fb05de10db" method="POST"><input type="hidden" name="_subject" value="New enquiry from Remy Digital"><input type="hidden" name="_template" value="table"><input type="hidden" name="_captcha" value="true"><input type="hidden" name="_next" value="https://remydesign.ca/thanks/"><div class="honeypot" aria-hidden="true"><label>Leave this field empty<input name="_honey" tabindex="-1" autocomplete="off"></label></div><div class="form-error-summary" role="alert" hidden>Please check the highlighted fields below.</div><div class="form-row"><div class="form-field"><label for="first-name">First Name</label><input id="first-name" aria-describedby="first-name-error" name="first_name" autocomplete="given-name" maxlength="100"><p class="field-error" id="first-name-error" hidden></p></div><div class="form-field"><label for="last-name">Last Name</label><input id="last-name" aria-describedby="last-name-error" name="last_name" autocomplete="family-name" maxlength="100"><p class="field-error" id="last-name-error" hidden></p></div></div><div class="form-field"><label for="email"><span>Email <span aria-hidden="true">*</span></span></label><input id="email" aria-describedby="email-error" name="email" type="email" autocomplete="email" required maxlength="254"><p class="field-error" id="email-error" hidden></p></div><div class="form-field"><label for="message">Message</label><textarea id="message" aria-describedby="message-error" name="message" rows="6" required maxlength="10000"></textarea><p class="field-error" id="message-error" hidden></p></div><div class="form-actions"><button class="button button-primary" type="submit"><span class="button-label">Send</span></button></div></form><p class="contact-alternative">Prefer email? <a href="mailto:jeremy@remydesign.ca">jeremy@remydesign.ca</a></p></div></section>`;
+const footer = () =>
+  `<footer class="site-footer"><p>© 2026 remy digital <span aria-hidden="true">|</span> All rights reserved.</p></footer>`;
+const expertise = [
+  "Branding",
+  "Logo Design",
+  "Product Design",
+  "Product Management",
+  "Product Ownership",
+  "Head of Product",
+  "UX Design",
+  "AI",
+  "Prototyping",
+  "App Design",
+  "Design Systems",
+];
 function document(title, description, route, body) {
- const project=projects.find(p=>route===`/projects/${p.slug}/`);
- const utility=route==='/thanks/'||route==='/404.html';
- const url=`https://remydesign.ca${route}`;
- const shareImage='https://remydesign.ca/remy-share.png';
- const shareTitle=project?`${project.name} — ${project.category}`:'Automate the ordinary. Create the extraordinary.';
- const projectImage=project?`https://remydesign.ca/assets/home-projects/${project.slug}.webp`:shareImage;
- const person={'@type':'Person','@id':'https://remydesign.ca/#jeremy-cormier',name:'Jeremy Cormier',url:'https://remydesign.ca/#profile',image:'https://remydesign.ca/assets/figma/imgJeremyCormierProfilePic91.webp',description:'Product designer and product leader in Halifax, Nova Scotia, Canada.',knowsAbout:expertise,sameAs:['https://www.behance.net/jeremycormier902','https://www.linkedin.com/in/jeremyrcormier/']};
- const site={'@type':'WebSite','@id':'https://remydesign.ca/#website',name:'Remy Digital',alternateName:'Remy Design',url:'https://remydesign.ca/',inLanguage:'en-CA',creator:{'@id':person['@id']}};
- const page={'@type':project?'WebPage':'CollectionPage','@id':url+'#webpage',url,name:title,description,inLanguage:'en-CA',isPartOf:{'@id':site['@id']},about:project?{'@id':url+'#project'}:{'@id':person['@id']}};
- const graph=[person,site,page];
- if(project){
-  graph.push({'@type':'CreativeWork','@id':url+'#project',name:project.name,description:project.overview,url,image:projectImage,creator:{'@id':person['@id']},keywords:project.tags.join(', '),genre:project.category});
-  graph.push({'@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Home',item:'https://remydesign.ca/'},{'@type':'ListItem',position:2,name:project.name,item:url}]});
- }
- const structured=utility?'':`<script type="application/ld+json">${JSON.stringify({'@context':'https://schema.org','@graph':graph}).replace(/</g,'\\u003c')}</script>`;
- return `<!doctype html><html lang="en-CA"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escape(title)}</title><meta name="description" content="${escape(description)}"><meta name="author" content="Jeremy Cormier"><meta name="robots" content="${utility?'noindex, follow':'index, follow, max-image-preview:large'}"><meta name="theme-color" content="#0c0c0c"><link rel="canonical" href="${url}"><meta property="og:type" content="website"><meta property="og:site_name" content="Remy Digital"><meta property="og:locale" content="en_CA"><meta property="og:title" content="${escape(shareTitle)}"><meta property="og:description" content="${escape(description)}"><meta property="og:url" content="${url}"><meta property="og:image" content="${shareImage}"><meta property="og:image:secure_url" content="${shareImage}"><meta property="og:image:width" content="600"><meta property="og:image:height" content="315"><meta property="og:image:alt" content="Remy Digital — Automate the ordinary. Create the extraordinary. Product | Branding | Marketing"><meta property="og:image:type" content="image/png"><meta name="twitter:image:alt" content="Remy Digital — Automate the ordinary. Create the extraordinary. Product | Branding | Marketing"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${escape(shareTitle)}"><meta name="twitter:description" content="${escape(description)}"><meta name="twitter:image" content="${shareImage}">${structured}<link rel="apple-touch-icon" sizes="180x180" href="/assets/social/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="180x180" href="/assets/social/apple-touch-icon.png"><link rel="icon" type="image/svg+xml" href="/assets/remy-digital-icon.svg"><link rel="preload" href="/assets/fonts/helvetica-neue-regular.otf" as="font" type="font/otf" crossorigin><link rel="stylesheet" href="/style.css?v=${assetVersion}"><script src="/site.js?v=${assetVersion}" defer></script></head><body>${body}</body></html>`;
+  const project = projects.find((p) => route === `/projects/${p.slug}/`);
+  const utility = route === "/thanks/" || route === "/404.html";
+  const url = `https://remydesign.ca${route}`;
+  const shareImage = "https://remydesign.ca/remy-share.png";
+  const shareTitle = project
+    ? `${project.name} — ${project.category}`
+    : "Automate the ordinary. Create the extraordinary.";
+  const projectImage = project
+    ? `https://remydesign.ca/assets/home-projects/${project.slug}.webp`
+    : shareImage;
+  const person = {
+    "@type": "Person",
+    "@id": "https://remydesign.ca/#jeremy-cormier",
+    name: "Jeremy Cormier",
+    url: "https://remydesign.ca/#profile",
+    image:
+      "https://remydesign.ca/assets/figma/imgJeremyCormierProfilePic91.webp",
+    description:
+      "Product designer and product leader in Halifax, Nova Scotia, Canada.",
+    knowsAbout: expertise,
+    sameAs: [
+      "https://www.behance.net/jeremycormier902",
+      "https://www.linkedin.com/in/jeremyrcormier/",
+    ],
+  };
+  const site = {
+    "@type": "WebSite",
+    "@id": "https://remydesign.ca/#website",
+    name: "Remy Digital",
+    alternateName: "Remy Design",
+    url: "https://remydesign.ca/",
+    inLanguage: "en-CA",
+    creator: { "@id": person["@id"] },
+  };
+  const page = {
+    "@type": project ? "WebPage" : "CollectionPage",
+    "@id": url + "#webpage",
+    url,
+    name: title,
+    description,
+    inLanguage: "en-CA",
+    isPartOf: { "@id": site["@id"] },
+    about: project ? { "@id": url + "#project" } : { "@id": person["@id"] },
+  };
+  const graph = [person, site, page];
+  if (project) {
+    graph.push({
+      "@type": "CreativeWork",
+      "@id": url + "#project",
+      name: project.name,
+      description: project.overview,
+      url,
+      image: projectImage,
+      creator: { "@id": person["@id"] },
+      keywords: project.tags.join(", "),
+      genre: project.category,
+    });
+    graph.push({
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://remydesign.ca/",
+        },
+        { "@type": "ListItem", position: 2, name: project.name, item: url },
+      ],
+    });
+  }
+  const structured = utility
+    ? ""
+    : `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replace(/</g, "\\u003c")}</script>`;
+  return `<!doctype html><html lang="en-CA"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escape(title)}</title><meta name="description" content="${escape(description)}"><meta name="author" content="Jeremy Cormier"><meta name="robots" content="${utility ? "noindex, follow" : "index, follow, max-image-preview:large"}"><meta name="theme-color" content="#0c0c0c"><link rel="canonical" href="${url}"><meta property="og:type" content="website"><meta property="og:site_name" content="Remy Digital"><meta property="og:locale" content="en_CA"><meta property="og:title" content="${escape(shareTitle)}"><meta property="og:description" content="${escape(description)}"><meta property="og:url" content="${url}"><meta property="og:image" content="${shareImage}"><meta property="og:image:secure_url" content="${shareImage}"><meta property="og:image:width" content="600"><meta property="og:image:height" content="315"><meta property="og:image:alt" content="Remy Digital — Automate the ordinary. Create the extraordinary. Product | Branding | Marketing"><meta property="og:image:type" content="image/png"><meta name="twitter:image:alt" content="Remy Digital — Automate the ordinary. Create the extraordinary. Product | Branding | Marketing"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${escape(shareTitle)}"><meta name="twitter:description" content="${escape(description)}"><meta name="twitter:image" content="${shareImage}">${structured}<link rel="apple-touch-icon" sizes="180x180" href="/assets/social/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="180x180" href="/assets/social/apple-touch-icon.png"><link rel="icon" type="image/svg+xml" href="/assets/remy-digital-icon.svg"><link rel="preload" href="/assets/fonts/helvetica-neue-regular.otf" as="font" type="font/otf" crossorigin><link rel="stylesheet" href="/style.css?v=${assetVersion}"><script src="/site.js?v=${assetVersion}" defer></script></head><body>${body}</body></html>`;
 }
-const partnerRows=[['canada','csa','nova-scotia','maplewave'],['low6','catena','redbull'],['covers','draftkings','nhl','bet365']];
-const partnerNames={'canada':'Government of Canada','csa':'Canadian Space Agency','nova-scotia':'Government of Nova Scotia','maplewave':'Maplewave','low6':'LOW6','catena':'Catena Media','redbull':'Red Bull','covers':'Covers','draftkings':'DraftKings','nhl':'NHL','bet365':'bet365'};
-const services=[['Product',['Product Strategy','Product Design + UX','Design Systems']],['Branding',['Brand Strategy','Logo + Visual Identity','Brand Guidelines + Toolkits']],['Marketing',['Growth Strategy','Social Media Management','Content Strategy + SEO/AEO']]];
-const home=`${header(true)}<main id="main"><section class="hero patterned" aria-labelledby="hero-title"><div class="hero-content">${disciplines()}<h1 id="hero-title">Automate the ordinary.<br><strong>Create the extraordinary.</strong></h1><p>Less time going through the motions,<br>more time chasing ideas.</p><a class="button button-primary" href="#contact"><span class="button-label">Start creating</span></a></div></section><section id="projects" class="section container">${sectionHeading('My work','Projects')}<div class="project-grid">${projects.map(p=>`<a class="project-card" href="/projects/${p.slug}/" aria-label="View ${escape(p.name)} case study">${image(`home-projects/${p.slug}.webp`,`${p.name}. ${p.category}. ${p.tags.join(', ')}.`, 'loading="lazy" decoding="async"', '(max-width:1600px) 27vw, 427px')}</a>`).join('')}</div></section><section class="section container brands">${sectionHeading('My partners','Brands')}<div class="partner-rows">${partnerRows.map(row=>`<div class="partner-row">${row.map(logo=>`<div class="partner-logo ${logo}">${image(`partners/${logo}-logo.svg`,partnerNames[logo],'loading="lazy"')}</div>`).join('')}</div>`).join('')}</div></section><section id="services" class="section container">${sectionHeading('My specialties','Services')}<div class="service-grid">${services.map(([title,items],i)=>`<article class="service-card">${image('figma/imgRdIcon2.svg','','aria-hidden="true" loading="lazy"')}<div><h3>${title}</h3><ul>${items.map(item=>`<li>${item}</li>`).join('')}</ul></div></article>`).join('')}</div></section><section id="profile" class="section container profile">${sectionHeading('My background','Profile')}<div class="profile-grid"><div class="portrait">${image('figma/imgJeremyCormierProfilePic91.png','Jeremy Cormier','loading="lazy" decoding="async"')}</div><div class="profile-copy"><h3>Jeremy Cormier</h3>${disciplines(true)}<p>I’m Jeremy Cormier, a product designer and product leader based in Halifax, Nova Scotia, Canada. I help teams bring new ideas to market, connecting branding and visual identity with thoughtful UX and app design. My experience includes work with the NHL, bet365, DraftKings and the Canadian Federal Government, and roles ranging from Brand Director and UX Design Lead to Head of Product and Operations. I use data and conversations with users to guide my decisions, and I love finding practical ways to let AI handle the repetitive stuff—making more room for creative thinking and building products that make people’s lives easier.</p><div class="profile-actions"><a class="button button-outline" href="/assets/Jeremy_Cormier_2026.pdf?v=05d616f12b25" download><span class="button-label">Download CV</span></a><div class="social-links">${image('figma/imgObjects11.svg','','aria-hidden="true" loading="lazy"')}<a href="https://www.behance.net/jeremycormier902" target="_blank" rel="noreferrer" aria-label="Jeremy Cormier on Behance"></a><a href="https://www.linkedin.com/in/jeremyrcormier/" target="_blank" rel="noreferrer" aria-label="Jeremy Cormier on LinkedIn"></a></div></div></div></div></section>${contactForm()}</main>${footer()}`;
-fs.writeFileSync(path.join(publicDir,'index.html'),document('Halifax Product Design & Branding | Jeremy Cormier — Remy Digital','Jeremy Cormier in Halifax, Nova Scotia, Canada. Product design, UX, app design, logo design, branding and product leadership for teams building new ideas.','/',home));
+const partnerRows = [
+  ["canada", "csa", "nova-scotia", "maplewave"],
+  ["low6", "catena", "redbull"],
+  ["covers", "draftkings", "nhl", "bet365"],
+];
+const partnerNames = {
+  canada: "Government of Canada",
+  csa: "Canadian Space Agency",
+  "nova-scotia": "Government of Nova Scotia",
+  maplewave: "Maplewave",
+  low6: "LOW6",
+  catena: "Catena Media",
+  redbull: "Red Bull",
+  covers: "Covers",
+  draftkings: "DraftKings",
+  nhl: "NHL",
+  bet365: "bet365",
+};
+const services = [
+  ["Product", ["Product Strategy", "Product Design + UX", "Design Systems"]],
+  [
+    "Branding",
+    ["Brand Strategy", "Logo + Visual Identity", "Brand Guidelines + Toolkits"],
+  ],
+  [
+    "Marketing",
+    [
+      "Growth Strategy",
+      "Social Media Management",
+      "Content Strategy + SEO/AEO",
+    ],
+  ],
+];
+const home = `${header(true)}<main id="main"><section class="hero patterned" aria-labelledby="hero-title"><div class="hero-content">${disciplines()}<h1 id="hero-title">Automate the ordinary.<br><strong>Create the extraordinary.</strong></h1><p>Less time going through the motions,<br>more time chasing ideas.</p><a class="button button-primary" href="#contact"><span class="button-label">Start creating</span></a></div></section><section id="projects" class="section container">${sectionHeading("My work", "Projects")}<div class="project-grid">${projects.map((p) => `<a class="project-card" href="/projects/${p.slug}/" aria-label="View ${escape(p.name)} case study">${image(`home-projects/${p.slug}.webp`, `${p.name}. ${p.category}. ${p.tags.join(", ")}.`, 'loading="lazy" decoding="async"', "(max-width:1600px) 27vw, 427px")}</a>`).join("")}</div></section><section class="section container brands">${sectionHeading("My partners", "Brands")}<div class="partner-rows">${partnerRows.map((row) => `<div class="partner-row">${row.map((logo) => `<div class="partner-logo ${logo}">${image(`partners/${logo}-logo.svg`, partnerNames[logo], 'loading="lazy"')}</div>`).join("")}</div>`).join("")}</div></section><section id="services" class="section container">${sectionHeading("My specialties", "Services")}<div class="service-grid">${services.map(([title, items], i) => `<article class="service-card">${image("figma/imgRdIcon2.svg", "", 'aria-hidden="true" loading="lazy"')}<div><h3>${title}</h3><ul>${items.map((item) => `<li>${item}</li>`).join("")}</ul></div></article>`).join("")}</div></section><section id="profile" class="section container profile">${sectionHeading("My background", "Profile")}<div class="profile-grid"><div class="portrait">${image("figma/imgJeremyCormierProfilePic91.png", "Jeremy Cormier", 'loading="lazy" decoding="async"')}</div><div class="profile-copy"><h3>Jeremy Cormier</h3>${disciplines(true)}<p>I’m Jeremy Cormier, a product designer and product leader based in Halifax, Nova Scotia, Canada. I help teams bring new ideas to market, connecting branding and visual identity with thoughtful UX and app design. My experience includes work with the NHL, bet365, DraftKings and the Canadian Federal Government, and roles ranging from Brand Director and UX Design Lead to Head of Product and Operations. I use data and conversations with users to guide my decisions, and I love finding practical ways to let AI handle the repetitive stuff—making more room for creative thinking and building products that make people’s lives easier.</p><div class="profile-actions"><a class="button button-outline" href="/assets/Jeremy_Cormier_2026.pdf?v=${cvVersion}" download><span class="button-label">Download CV</span></a><div class="social-links">${image("figma/imgObjects11.svg", "", 'aria-hidden="true" loading="lazy"')}<a href="https://www.behance.net/jeremycormier902" target="_blank" rel="noreferrer" aria-label="Jeremy Cormier on Behance"></a><a href="https://www.linkedin.com/in/jeremyrcormier/" target="_blank" rel="noreferrer" aria-label="Jeremy Cormier on LinkedIn"></a></div></div></div></div></section>${contactForm()}</main>${footer()}`;
+fs.writeFileSync(
+  path.join(publicDir, "index.html"),
+  document(
+    "Halifax Product Design & Branding | Jeremy Cormier — Remy Digital",
+    "Jeremy Cormier in Halifax, Nova Scotia, Canada. Product design, UX, app design, logo design, branding and product leadership for teams building new ideas.",
+    "/",
+    home,
+  ),
+);
 for (const p of projects) {
-  const rating=p.slug==='pando'?'pando-rating.svg':p.slug==='collab'?'collab-rating.svg':null;
-  const stores=p.slug==='pando'?'pando-app-stores.svg':p.slug==='collab'?'collab-app-stores.svg':null;
-  const extra=rating?`<div class="app-proof">${image(`${p.slug}/${rating}`,'App rating from the supplied project artwork','loading="lazy"')}${image(`${p.slug}/${stores}`,'App Store and Google Play availability shown in the supplied design','loading="lazy"')}</div>`:'';
-  const identityOrder=p.slug==='pando'?[5,4,6]:[4,5,6];
-  const body=`${header()}<main id="main" class="case-main"><div class="container"><section class="case-hero"><h1>${escape(p.tagline)}</h1>${media(p,1,'wide')}</section><section class="case-overview"><h2>${escape(p.slug==='amp'?'Canadian Space Agency':p.name)}</h2>${p.draft?'<p class="draft-note" data-nosnippet>Draft case study — copy prepared for review.</p>':''}<p>${escape(p.overview)}</p></section><hr><section class="case-row"><div class="case-copy"><h2>Challenges</h2><p>${escape(p.challenges)}</p></div>${media(p,2,'square')}</section><section class="case-row outcome">${media(p,3,'square')}<div class="case-copy"><h2>Outcome</h2><p>${escape(p.outcome)}</p>${extra}</div></section><div class="identity-strip">${identityOrder.map(number=>media(p,number)).join('')}</div><div class="case-finale">${media(p,7,'wide')}</div><nav class="case-navigation" aria-label="Project navigation"><a href="/#projects">← All projects</a><a href="/projects/${projects[(projects.indexOf(p)+1)%projects.length].slug}/">Next project →</a></nav></div>${contactForm()}</main>${footer()}`;
-  const out=path.join(publicDir,'projects',p.slug);fs.mkdirSync(out,{recursive:true});
-  fs.writeFileSync(path.join(out,'index.html'),document(`${p.name} | ${p.category.replace("Product", "Product Design")} — Remy Digital`,`${p.name}: ${p.tags.join(", ").toLowerCase()} by Jeremy Cormier, a product designer and brand designer in Halifax, Nova Scotia. ${p.tagline}`,`/projects/${p.slug}/`,body));
+  const rating =
+    p.slug === "pando"
+      ? "pando-rating.svg"
+      : p.slug === "collab"
+        ? "collab-rating.svg"
+        : null;
+  const stores =
+    p.slug === "pando"
+      ? "pando-app-stores.svg"
+      : p.slug === "collab"
+        ? "collab-app-stores.svg"
+        : null;
+  const extra = rating
+    ? `<div class="app-proof">${image(`${p.slug}/${rating}`, "App rating from the supplied project artwork", 'loading="lazy"')}${image(`${p.slug}/${stores}`, "App Store and Google Play availability shown in the supplied design", 'loading="lazy"')}</div>`
+    : "";
+  const identityOrder = p.slug === "pando" ? [5, 4, 6] : [4, 5, 6];
+  const body = `${header()}<main id="main" class="case-main"><div class="container"><section class="case-hero"><h1>${escape(p.tagline)}</h1>${media(p, 1, "wide")}</section><section class="case-overview"><h2>${escape(p.slug === "amp" ? "Canadian Space Agency" : p.name)}</h2>${p.draft ? '<p class="draft-note" data-nosnippet>Draft case study — copy prepared for review.</p>' : ""}<p>${escape(p.overview)}</p></section><hr><section class="case-row"><div class="case-copy"><h2>Challenges</h2><p>${escape(p.challenges)}</p></div>${media(p, 2, "square")}</section><section class="case-row outcome">${media(p, 3, "square")}<div class="case-copy"><h2>Outcome</h2><p>${escape(p.outcome)}</p>${extra}</div></section><div class="identity-strip">${identityOrder.map((number) => media(p, number)).join("")}</div><div class="case-finale">${media(p, 7, "wide")}</div><nav class="case-navigation" aria-label="Project navigation"><a href="/#projects">← All projects</a><a href="/projects/${projects[(projects.indexOf(p) + 1) % projects.length].slug}/">Next project →</a></nav></div>${contactForm()}</main>${footer()}`;
+  const out = path.join(publicDir, "projects", p.slug);
+  fs.mkdirSync(out, { recursive: true });
+  fs.writeFileSync(
+    path.join(out, "index.html"),
+    document(
+      `${p.name} | ${p.category.replace("Product", "Product Design")} — Remy Digital`,
+      `${p.name}: ${p.tags.join(", ").toLowerCase()} by Jeremy Cormier, a product designer and brand designer in Halifax, Nova Scotia. ${p.tagline}`,
+      `/projects/${p.slug}/`,
+      body,
+    ),
+  );
 }
-for (const [route,title,copy] of [['thanks','Thanks for getting in touch.','Your enquiry has been submitted. I look forward to speaking with you.'],['404','This page has moved.','Explore the latest projects or get in touch.']]) {
-  const markup=document(`${title} — Remy Digital`,copy,route==='404'?'/404.html':'/thanks/',`${header()}<main id="main" class="utility-page container"><h1>${title}</h1><p>${copy}</p><a class="button button-primary" href="/"><span class="button-label">Back to home</span></a></main>${footer()}`);
-  if(route==='404') fs.writeFileSync(path.join(publicDir,'404.html'),markup);
-  else {fs.mkdirSync(path.join(publicDir,route),{recursive:true});fs.writeFileSync(path.join(publicDir,route,'index.html'),markup);}
+for (const [route, title, copy] of [
+  [
+    "thanks",
+    "Thanks for getting in touch.",
+    "Your enquiry has been submitted. I look forward to speaking with you.",
+  ],
+  [
+    "404",
+    "This page has moved.",
+    "Explore the latest projects or get in touch.",
+  ],
+]) {
+  const markup = document(
+    `${title} — Remy Digital`,
+    copy,
+    route === "404" ? "/404.html" : "/thanks/",
+    `${header()}<main id="main" class="utility-page container"><h1>${title}</h1><p>${copy}</p><a class="button button-primary" href="/"><span class="button-label">Back to home</span></a></main>${footer()}`,
+  );
+  if (route === "404")
+    fs.writeFileSync(path.join(publicDir, "404.html"), markup);
+  else {
+    fs.mkdirSync(path.join(publicDir, route), { recursive: true });
+    fs.writeFileSync(path.join(publicDir, route, "index.html"), markup);
+  }
 }
-fs.writeFileSync(path.join(publicDir,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${['/',...projects.map(p=>`/projects/${p.slug}/`)].map(route=>`<url><loc>https://remydesign.ca${route}</loc></url>`).join('')}</urlset>`);
-fs.writeFileSync(path.join(publicDir,'robots.txt'),'User-agent: *\nAllow: /\nSitemap: https://remydesign.ca/sitemap.xml\n');
-const css=sass.compile(path.join(publicDir,'style.scss'),{style:'compressed'}).css;
-const result=await postcss([autoprefixer]).process(css,{from:undefined});
-fs.writeFileSync(path.join(publicDir,'style.css'),result.css);
-console.log('Built homepage, 9 case studies, CV link, contact form, sitemap and CSS.');
+fs.writeFileSync(
+  path.join(publicDir, "sitemap.xml"),
+  `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${["/", ...projects.map((p) => `/projects/${p.slug}/`)].map((route) => `<url><loc>https://remydesign.ca${route}</loc></url>`).join("")}</urlset>`,
+);
+fs.writeFileSync(
+  path.join(publicDir, "robots.txt"),
+  "User-agent: *\nAllow: /\nSitemap: https://remydesign.ca/sitemap.xml\n",
+);
+const css = sass.compile(path.join(publicDir, "style.scss"), {
+  style: "compressed",
+}).css;
+const result = await postcss([autoprefixer]).process(css, { from: undefined });
+fs.writeFileSync(path.join(publicDir, "style.css"), result.css);
+console.log(
+  "Built homepage, 9 case studies, CV link, contact form, sitemap and CSS.",
+);
