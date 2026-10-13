@@ -1471,7 +1471,8 @@ body {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: -4px;
+    // Account for the link’s 12px bottom padding and font line box.
+    bottom: 10px;
     height: 2px;
     background: var(--green);
     transform: scaleX(0);
