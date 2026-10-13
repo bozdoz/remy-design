@@ -1549,3 +1549,10 @@ body {
   opacity: 1;
   transform: none;
 }
+
+// Keep desktop form labels close to their fields as the layout grows.
+@media (min-width: 641px) {
+  .form-field {
+    gap: 12px;
+  }
+}
