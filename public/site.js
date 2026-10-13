@@ -242,29 +242,10 @@ window.addEventListener("resize", queueServiceHighlight);
 mobileServices.addEventListener("change", queueServiceHighlight);
 updateServiceHighlight();
 
-// Content is visible by default; motion never depends on fonts or load events.
-let heroEntrance = 0,
-  heroFallback;
-function startHeroEntrance() {
-  const run = ++heroEntrance,
-    root = document.documentElement;
-  clearTimeout(heroFallback);
-  root.classList.remove("hero-pending", "hero-ready");
-  if (document.hidden || reducedMotion.matches) return;
-  requestAnimationFrame(() =>
-    requestAnimationFrame(() => {
-      if (run !== heroEntrance || document.hidden) return;
-      root.classList.add("hero-ready");
-      // iOS webviews can suspend animation timelines during navigation.
-      heroFallback = setTimeout(
-        () => root.classList.remove("hero-ready"),
-        3500,
-      );
-    }),
-  );
-}
-startHeroEntrance();
-window.addEventListener("pageshow", startHeroEntrance);
-document.addEventListener("visibilitychange", () => {
-  if (!document.hidden) startHeroEntrance();
+// CSS starts the hero entrance on first paint, avoiding a visible-then-hidden flash.
+// This fallback preserves visibility if iOS suspends an animation timeline.
+const finishHeroEntrance = () => document.documentElement.classList.add("hero-motion-complete");
+setTimeout(finishHeroEntrance, 3500);
+window.addEventListener("pageshow", event => {
+  if (event.persisted) finishHeroEntrance();
 });

@@ -1138,22 +1138,22 @@ form label {
   }
 }
 @media (prefers-reduced-motion: no-preference) {
-  .hero-ready .hero-content > .disciplines,
-  .hero-ready .hero-content > h1,
-  .hero-ready .hero-content > p,
-  .hero-ready .hero-content > .button {
+  .hero-content > .disciplines,
+  .hero-content > h1,
+  .hero-content > p,
+  .hero-content > .button {
     animation: hero-enter 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
-  .hero-ready .hero-content > .disciplines {
+  .hero-content > .disciplines {
     animation-delay: 0.08s;
   }
-  .hero-ready .hero-content > h1 {
+  .hero-content > h1 {
     animation-delay: 0.2s;
   }
-  .hero-ready .hero-content > p {
+  .hero-content > p {
     animation-delay: 0.55s;
   }
-  .hero-ready .hero-content > .button {
+  .hero-content > .button {
     animation-delay: 1s;
   }
 }
@@ -1309,22 +1309,22 @@ body {
   }
 }
 @media (max-width: 640px) and (prefers-reduced-motion: no-preference) {
-  .hero-ready .hero-content > .disciplines,
-  .hero-ready .hero-content > h1,
-  .hero-ready .hero-content > p,
-  .hero-ready .hero-content > .button {
+  .hero-content > .disciplines,
+  .hero-content > h1,
+  .hero-content > p,
+  .hero-content > .button {
     animation: hero-enter 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
-  .hero-ready .hero-content > .disciplines {
+  .hero-content > .disciplines {
     animation-delay: 0.08s;
   }
-  .hero-ready .hero-content > h1 {
+  .hero-content > h1 {
     animation-delay: 0.2s;
   }
-  .hero-ready .hero-content > p {
+  .hero-content > p {
     animation-delay: 0.55s;
   }
-  .hero-ready .hero-content > .button {
+  .hero-content > .button {
     animation-delay: 1s;
   }
 }
@@ -1541,4 +1541,11 @@ body {
 .project-tags li > span {
   display: block;
   transform: translateY(2px);
+}
+
+// Restore the final visible state if a browser suspends animation playback.
+.hero-motion-complete .hero-content > * {
+  animation: none !important;
+  opacity: 1;
+  transform: none;
 }
