@@ -1484,3 +1484,10 @@ body {
     transform: scaleX(1);
   }
 }
+
+// Use the brand green for the mobile menu's open-state close icon.
+@media (max-width: 640px) {
+  .menu-toggle[aria-expanded="true"] {
+    color: var(--green);
+  }
+}
