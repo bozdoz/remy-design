@@ -57,7 +57,7 @@ Local Chrome verification covered the homepage at 320, 390, 640, 768, 900, 1024,
 
 - Replace the CV at `public/assets/Jeremy_Cormier_2026.pdf`, then rebuild.
 - Keep WebP dimensions in `content/image-dimensions.json` consistent with each full-size and 640-pixel image. The generator creates responsive `srcset` references.
-- Homepage project tiles include their text in the supplied artwork; do not add duplicate HTML overlays.
+- Homepage project tiles use clean background artwork with live text from `content/projects.json`. Compact homepage pill labels are defined by `tileTag` in the generator; all three pills stay in one row.
 - Replace an animation using a new MP4 filename plus its matching WebP poster, update `content/projects.json`, and rebuild. This avoids stale browser/CDN media caches.
 - Pando placement 2 has a two-second final-frame hold; placement 7 loops in six seconds. Edited GIF deliverables are in the ignored `outputs/` directory.
 - Large original artwork remains available for compatibility and future edits. The current pages use optimized WebP backgrounds and lazy-loaded MP4 animations.
