@@ -159,6 +159,7 @@ a:hover {
   padding-block: 12px;
 }
 .button {
+  cursor: pointer;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -1114,6 +1115,7 @@ form label {
 
 // Optical centring accounts for Helvetica Neue's high cap-height placement.
 .button-label {
+  pointer-events: none;
   display: block;
   transform: translateY(0.11em);
 }
@@ -1555,4 +1557,24 @@ body {
   .form-field {
     gap: 12px;
   }
+}
+
+// Desktop cursor light is clipped to the existing hero pattern artwork.
+@media (min-width: 901px) and (hover: hover) and (pointer: fine) {
+  .hero.patterned::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(circle 230px at var(--hero-light-x, 50%) var(--hero-light-y, 50%), #00f3aa 0%, rgba(0,243,170,.8) 25%, rgba(0,243,170,.25) 62%, transparent 100%);
+    mask-image: url("/assets/figma/imgBrandPattern.webp");
+    mask-size: calc(100% + 2 * min(1.719vw, 27.504px)) auto;
+    mask-position: center max(-1.68vw, -26.88px);
+    mask-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity .3s ease;
+    filter: drop-shadow(0 0 8px rgba(0,243,170,.7));
+  }
+  .hero.has-pattern-light::after { opacity: 1; }
 }

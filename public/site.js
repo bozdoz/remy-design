@@ -249,3 +249,32 @@ setTimeout(finishHeroEntrance, 3500);
 window.addEventListener("pageshow", event => {
   if (event.persisted) finishHeroEntrance();
 });
+
+// Desktop hero flashlight: one position update per animation frame.
+const heroLight = document.querySelector('.hero.patterned');
+const heroLightDesktop = matchMedia('(min-width: 901px) and (hover: hover) and (pointer: fine)');
+if (heroLight) {
+  let lightFrame = 0;
+  let lightX = 0;
+  let lightY = 0;
+  const clearLight = () => {
+    heroLight.classList.remove('has-pattern-light');
+    cancelAnimationFrame(lightFrame);
+    lightFrame = 0;
+  };
+  heroLight.addEventListener('pointermove', event => {
+    if (!heroLightDesktop.matches || event.pointerType !== 'mouse') return;
+    const bounds = heroLight.getBoundingClientRect();
+    lightX = event.clientX - bounds.left;
+    lightY = event.clientY - bounds.top;
+    if (!lightFrame) lightFrame = requestAnimationFrame(() => {
+      heroLight.style.setProperty('--hero-light-x', `${lightX}px`);
+      heroLight.style.setProperty('--hero-light-y', `${lightY}px`);
+      heroLight.classList.add('has-pattern-light');
+      lightFrame = 0;
+    });
+  }, {passive:true});
+  heroLight.addEventListener('pointerleave', clearLight);
+  heroLightDesktop.addEventListener('change', clearLight);
+  window.addEventListener('blur', clearLight);
+}
