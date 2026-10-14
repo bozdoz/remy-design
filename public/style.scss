@@ -1578,3 +1578,11 @@ body {
   }
   .hero.has-pattern-light::after { opacity: 1; }
 }
+
+// Explicitly keep the hand pointer over complete interactive hit areas.
+a[href],
+a[href] *,
+button:not(:disabled),
+button:not(:disabled) * {
+  cursor: pointer;
+}
