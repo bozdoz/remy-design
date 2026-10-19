@@ -74,7 +74,7 @@
   {
     "slug": "amp",
     "name": "Advanced Medical Pods",
-    "tagline": "Advanced medical pods.",
+    "tagline": "Connected care, wherever it’s needed.",
     "category": "Product + Branding",
     "tags": [
       "Product Strategy",
@@ -90,15 +90,19 @@
       "amp-placed-6.svg",
       "amp-placed-7.webp"
     ],
-    "overview": "Advanced Medical Pods explores a connected healthcare experience across physical spaces and digital interfaces. The work includes identity, interface concepts and visual applications for medical pods.",
-    "challenges": "Create a visual language that can connect a healthcare service, its digital touchpoints and its physical environment. The interface and identity needed to read clearly across different screen sizes and applications.",
-    "outcome": "The work brings together a distinctive identity, pod interface concepts and remote consultation screens. Supporting applications show how the system can carry through to the physical pod environment.",
-    "draft": true
+    "overview": "Advanced Medical Pods (AMP) is a remote healthcare prototype developed for the Canadian Space Agency’s Health Beyond initiative. My work connected product design, patient and clinician experiences, and brand identity to support access to care in medically isolated communities.",
+    "challenges": "A tight timeline demanded clear priorities across a complex, connected system. The experience needed to bring TEMI’s AI-assisted initial triage, connected medical devices and remote consultations into an understandable patient journey, with a consistent identity across every touchpoint.",
+    "outcome": "The design work brought patient and clinician software, connected-device interactions and a complete brand identity into one cohesive prototype experience. A shared visual language carried across interfaces and physical applications, making the ambitious remote care concept easier to understand.",
+    "draft": false,
+    "contextLink": {
+      "text": "Health Beyond initiative",
+      "url": "https://www.longwoods.com/content/27083/innovating-healthcare-for-deep-space-and-remote-areas-on-earth-phyxable-and-the-canadian-space-agen"
+    }
   },
   {
     "slug": "bar-kismet",
     "name": "Bar Kismet",
-    "tagline": "Fresh seafood and handmade pasta.",
+    "tagline": "A personal touch. A lasting impression.",
     "category": "Branding",
     "tags": [
       "Brand Strategy",
@@ -114,15 +118,19 @@
       "bar-kismet-placed-6.svg",
       "bar-kismet-placed-7.webp"
     ],
-    "overview": "A visual identity for Bar Kismet, a restaurant centred on fresh seafood and handmade pasta. The work pairs an expressive wordmark with a restrained colour palette across menus, signage and printed materials.",
-    "challenges": "Translate the character of the restaurant into an identity that works both at the table and on the street. The design needed to remain recognisable across intimate printed details and exterior signage.",
-    "outcome": "The resulting identity is shown across business cards, menus, stationery and storefront applications. Typography, colour and illustration create a consistent visual thread throughout the restaurant experience.",
-    "draft": true
+    "overview": "Bar Kismet is an award-winning seafood restaurant and cocktail bar in Halifax, Nova Scotia, founded by my brother Jenner Cormier and his wife, Annie Brace-Lavoie. With their creative direction, I helped shape a brand rooted in family, craft and hospitality.",
+    "challenges": "The challenge was preserving the character of our grandmother Maureen Tufts’s handwriting while scanning and retracing it into a distinctive logo. Earthy colours and vintage details needed to balance simplicity with ornament, creating an identity that felt refined and approachable.",
+    "outcome": "The identity centres on Maureen’s handwriting, honouring her love of cooking and ingredients prepared by hand. An earthy palette and subtle ornament bring Jenner and Annie’s vision together: personal, organic and quietly elegant, with the warmth of a family story.",
+    "draft": false,
+    "contextLink": {
+      "text": "Bar Kismet",
+      "url": "https://barkismet.com/"
+    }
   },
   {
     "slug": "imsi",
     "name": "IMSI",
-    "tagline": "We make data ingestion a breeze.",
+    "tagline": "Technical expertise. A clearer experience.",
     "category": "Product + Marketing",
     "tags": [
       "Product Strategy",
@@ -138,15 +146,19 @@
       "imsi-placed-6.svg",
       "imsi-placed-7.webp"
     ],
-    "overview": "IMSI explores a product and brand experience for data ingestion and integration. The work combines interface concepts with an identity that carries through digital and printed touchpoints.",
-    "challenges": "Make a complex technical offering easier to communicate visually. The brand and interface needed to support both an overview of the product and more detailed, data-rich screens.",
-    "outcome": "The work presents a connected visual system across dashboard concepts, mobile marketing screens and branded stationery. A strong typographic identity and focused colour palette connect the applications.",
-    "draft": true
+    "overview": "IMSI develops monitoring and measurement technology for the steel industry. I refreshed its brand applications and marketing materials while retaining the established logo, alongside a website design focused on clearer user journeys and more accessible communication of its technical offering.",
+    "challenges": "The challenge was introducing a fresh visual approach without losing the recognition of IMSI’s existing brand. The website also needed clearer priorities: identifying core user journeys and translating those findings into UX flows that helped visitors navigate complex technical information.",
+    "outcome": "The work delivered refreshed marketing materials and a website design built around the identified user journeys. The existing logo anchored a more cohesive visual approach. Website implementation and hosting were handled externally; this case study presents my original design work.",
+    "draft": false,
+    "contextLink": {
+      "text": "IMSI",
+      "url": "https://imsi.ca/"
+    }
   },
   {
     "slug": "starling-architects",
     "name": "Starling Architects",
-    "tagline": "We see architecture as a living dialogue.",
+    "tagline": "An evolving practice. A connected identity.",
     "category": "Branding + Marketing",
     "tags": [
       "Brand Strategy",
@@ -162,15 +174,19 @@
       "starling-placed-6.svg",
       "starling-placed-7.webp"
     ],
-    "overview": "A visual identity for Starling Architects, built around the idea of architecture as a living dialogue. The work translates that direction into a wordmark, symbol and collection of branded applications.",
-    "challenges": "Express an architectural practice through a visual language that balances precision with character. The identity needed to work across stationery, presentation materials and signage at a range of scales.",
-    "outcome": "The identity is shown across stationery, business cards, site signage and architectural hoarding. Its symbol, typography and muted palette create a consistent presence across the collection.",
-    "draft": true
+    "overview": "Starling Architects, an architecture firm in Halifax, Nova Scotia, commissioned brand refresh concepts to explore its next chapter. My work included an evolved logo, a brand playbook and marketing materials showing how a more connected identity could reflect the practice’s growth.",
+    "challenges": "The firm’s conservative early branding offered limited room to communicate its value and reach potential clients through organic search. The challenge was evolving the existing logo into a more mature identity while giving every application a clearer, more consistent voice.",
+    "outcome": "The concepts presented a cohesive direction across the logo, playbook and marketing materials, showing how the brand could grow while retaining its identity. This exploratory work gave Starling a tangible view of a more mature, consistent presence across future applications.",
+    "draft": false,
+    "contextLink": {
+      "text": "Starling Architects",
+      "url": "https://www.starlingarchitects.com/about-starling-architects-architecture-firm-halifax-nova-scotia"
+    }
   },
   {
     "slug": "urbanarc-real-estate-group",
     "name": "Urbanarc Real Estate Group",
-    "tagline": "Let’s find your new home.",
+    "tagline": "Modern homes. A distinctive identity.",
     "category": "Branding + Marketing",
     "tags": [
       "Brand Strategy",
@@ -186,15 +202,19 @@
       "urbanarc-placed-6.svg",
       "urbanarc-placed-7.webp"
     ],
-    "overview": "A visual identity for Urbanarc Real Estate Group, applied across property marketing and brand materials. The work combines an architectural symbol with clear typography and a warm, restrained palette.",
-    "challenges": "Create an identity that remains legible and recognisable across property advertising, printed materials and building signage. Each application needed to connect back to the same brand language.",
-    "outcome": "The resulting system is shown across billboard advertising, stationery, storefront signage and an open-house promotion. The identity provides a consistent foundation for these different marketing formats.",
-    "draft": true
+    "overview": "Urbanarc Real Estate Group needed a new brand to appeal to buyers seeking contemporary, upscale homes. I developed a logo, brand guide and reusable visual assets, establishing a clean, modern identity that could carry consistently across property marketing and communications.",
+    "challenges": "The logo needed to express the Urbanarc name through a symbol inspired by Noah’s ark, paired with a clean, contemporary typeface. The challenge was balancing that distinctive reference with an upscale feel and the clarity needed across varied marketing applications.",
+    "outcome": "The identity pairs an ark-inspired symbol with modern typography and a consistent visual language. A brand guide and supporting assets provide a practical foundation for future design work, helping Urbanarc present a cohesive presence across property promotions and branded materials.",
+    "draft": false,
+    "contextLink": {
+      "text": "Urbanarc Real Estate Group",
+      "url": "https://www.instagram.com/urbanarcrealestategroup/"
+    }
   },
   {
     "slug": "anapolie-pizza",
     "name": "Anapolie Pizza",
-    "tagline": "Our specialty is our quality.",
+    "tagline": "A family tradition. A fresh look.",
     "category": "Product + Branding",
     "tags": [
       "Product Strategy",
@@ -210,9 +230,13 @@
       "anapolie-placed-6.svg",
       "anapolie-placed-7.mp4"
     ],
-    "overview": "A visual identity for Anapolie Pizza, celebrating the character of a neighbourhood pizza brand. The work centres on a distinctive wordmark and supporting identity elements across packaging and signage.",
-    "challenges": "Bring the brand’s personality into everyday customer touchpoints. The visual system needed to work on pizza packaging, exterior signage and supporting promotional applications.",
-    "outcome": "The work brings together an expressive wordmark, character illustration and warm colour palette. Packaging and signage applications show how the identity carries through the customer experience.",
-    "draft": true
+    "overview": "Family owned since 1983, Anapolie Pizza is a community staple in Cole Harbour, Nova Scotia, known for quality pizza and welcoming service. Working with a close friend, I refreshed the brand and supported website updates while honouring the shop’s history.",
+    "challenges": "The refresh needed to preserve the familiarity customers valued while giving the brand renewed character. Logo variations had to suit different applications, including a version featuring a likeness of founder Joseph Chidiac, without losing a consistent connection to Anapolie’s identity.",
+    "outcome": "The work produced a flexible family of logos, including a character inspired by Joseph Chidiac, who founded Anapolie in 1983. Together with website support, the refresh gave the shop a renewed visual identity grounded in its family and community roots.",
+    "draft": false,
+    "contextLink": {
+      "text": "Anapolie Pizza",
+      "url": "https://anapoliepizza.com/"
+    }
   }
 ]
